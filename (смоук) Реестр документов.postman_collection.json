@@ -1,0 +1,1909 @@
+{
+  "info": {
+    "_postman_id": "611d66bb-9e97-427c-a383-d0b40eff836f",
+    "name": "(смоук) Реестр документов",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "32293957",
+    "_collection_link": "https://go.postman.co/collection/32293957-611d66bb-9e97-427c-a383-d0b40eff836f?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Создать инвойс (с заполнением обязательных полей)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "let response = pm.response.json();\r",
+              "\r",
+              "pm.environment.set(\"INVOICEID\", response.id);\r",
+              "\r",
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json, text/plain, */*"
+          },
+          {
+            "key": "accept-language",
+            "value": "ru,en;q=0.9"
+          },
+          {
+            "key": "content-type",
+            "value": "application/json"
+          },
+          {
+            "key": "locale",
+            "value": "ru"
+          },
+          {
+            "key": "origin",
+            "value": "https://test.cupra.io"
+          },
+          {
+            "key": "priority",
+            "value": "u=1, i"
+          },
+          {
+            "key": "referer",
+            "value": "https://test.cupra.io/ru/invoice/create"
+          },
+          {
+            "key": "sec-ch-ua",
+            "value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\""
+          },
+          {
+            "key": "sec-ch-ua-mobile",
+            "value": "?0"
+          },
+          {
+            "key": "sec-ch-ua-platform",
+            "value": "\"Windows\""
+          },
+          {
+            "key": "sec-fetch-dest",
+            "value": "empty"
+          },
+          {
+            "key": "sec-fetch-mode",
+            "value": "cors"
+          },
+          {
+            "key": "sec-fetch-site",
+            "value": "same-origin"
+          },
+          {
+            "key": "user-agent",
+            "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36"
+          },
+          {
+            "key": "Cookie",
+            "value": "JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgwMzI5OTksImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.IkJTZ1T8pelgNQZe-Zahm6eAhwCgf32wvTRED2VbPBU"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"number\": \"16092025-AM\",\r\n  \"date\": \"2025-09-16T00:00:00.000Z\",\r\n  \"type\": {\r\n    \"id\": \"INVOICE\",\r\n    \"nameRu\": \"Инвойс\"\r\n  },\r\n  \"endCustomer\": {\r\n    \"name\": \"\",\r\n    \"country\": null\r\n  },\r\n  \"sender\": {\r\n    \"name\": \"\",\r\n    \"country\": {\r\n      \"alpha2\": \"RO\",\r\n      \"id\": \"RO\",\r\n      \"name\": \"Румыния\",\r\n      \"__typename\": \"CountryDto\",\r\n      \"nameRu\": \"Румыния\",\r\n      \"nameEn\": \"Румыния\"\r\n    },\r\n    \"company\": {\r\n      \"eori\": null,\r\n      \"id\": \"7e7df51a-f0fe-4428-a509-851f416d2f73\",\r\n      \"name\": \"MANOKHI ORDERS SRL\",\r\n      \"vat\": \"38571446\"\r\n    }\r\n  },\r\n  \"recipient\": {\r\n    \"name\": \"\",\r\n    \"country\": null\r\n  },\r\n  \"incoterms\": null,\r\n  \"currency\": {\r\n    \"isoCode\": \"EUR\"\r\n  },\r\n  \"sum\": 100,\r\n  \"itemCount\": null,\r\n  \"packingCount\": 1,\r\n  \"grossWeight\": null,\r\n  \"netWeight\": null,\r\n  \"documents\": [],\r\n  \"orders\": [],\r\n  \"wayBills\": [],\r\n  \"citeses\": [],\r\n  \"exportDeclarations\": [],\r\n  \"inEdit\": true\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://test.cupra.io/api/invoicer/invoices/",
+          "protocol": "https",
+          "host": [
+            "test",
+            "cupra",
+            "io"
+          ],
+          "path": [
+            "api",
+            "invoicer",
+            "invoices",
+            ""
+          ]
+        },
+        "description": "Generated from cURL: curl 'https://test.cupra.io/api/invoicer/invoices/' \\\r\n  -H 'accept: application/json, text/plain, */*' \\\r\n  -H 'accept-language: ru,en;q=0.9' \\\r\n  -H 'content-type: application/json' \\\r\n  -b 'JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgwMzI5OTksImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.IkJTZ1T8pelgNQZe-Zahm6eAhwCgf32wvTRED2VbPBU' \\\r\n  -H 'locale: ru' \\\r\n  -H 'origin: https://test.cupra.io' \\\r\n  -H 'priority: u=1, i' \\\r\n  -H 'referer: https://test.cupra.io/ru/invoice/create' \\\r\n  -H 'sec-ch-ua: \"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'sec-fetch-dest: empty' \\\r\n  -H 'sec-fetch-mode: cors' \\\r\n  -H 'sec-fetch-site: same-origin' \\\r\n  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36' \\\r\n  --data-raw '{\"number\":\"16092025\",\"date\":\"2025-09-16T00:00:00.000Z\",\"type\":{\"id\":\"INVOICE\",\"nameRu\":\"Инвойс\"},\"endCustomer\":{\"name\":\"\",\"country\":null},\"sender\":{\"name\":\"\",\"country\":{\"alpha2\":\"RO\",\"id\":\"RO\",\"name\":\"Румыния\",\"__typename\":\"CountryDto\",\"nameRu\":\"Румыния\",\"nameEn\":\"Румыния\"},\"company\":{\"eori\":null,\"id\":\"7e7df51a-f0fe-4428-a509-851f416d2f73\",\"name\":\"MANOKHI ORDERS SRL\",\"vat\":\"38571446\"}},\"recipient\":{\"name\":\"\",\"country\":null},\"incoterms\":null,\"currency\":{\"isoCode\":\"EUR\"},\"sum\":100,\"itemCount\":null,\"packingCount\":1,\"grossWeight\":null,\"netWeight\":null,\"documents\":[],\"orders\":[],\"wayBills\":[],\"citeses\":[],\"exportDeclarations\":[],\"inEdit\":true}'"
+      },
+      "response": []
+    },
+    {
+      "name": "Удалить инвойс",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json, text/plain, */*"
+          },
+          {
+            "key": "accept-language",
+            "value": "ru,en;q=0.9"
+          },
+          {
+            "key": "locale",
+            "value": "ru"
+          },
+          {
+            "key": "origin",
+            "value": "https://test.cupra.io"
+          },
+          {
+            "key": "priority",
+            "value": "u=1, i"
+          },
+          {
+            "key": "referer",
+            "value": "https://test.cupra.io/ru/invoices"
+          },
+          {
+            "key": "sec-ch-ua",
+            "value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\""
+          },
+          {
+            "key": "sec-ch-ua-mobile",
+            "value": "?0"
+          },
+          {
+            "key": "sec-ch-ua-platform",
+            "value": "\"Windows\""
+          },
+          {
+            "key": "sec-fetch-dest",
+            "value": "empty"
+          },
+          {
+            "key": "sec-fetch-mode",
+            "value": "cors"
+          },
+          {
+            "key": "sec-fetch-site",
+            "value": "same-origin"
+          },
+          {
+            "key": "user-agent",
+            "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36"
+          },
+          {
+            "key": "Cookie",
+            "value": "JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgxMDYxOTAsImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.8csxwRnxj5G_--LCy9Vu6OCGa4vkpwjOXFvVUNkDDA0"
+          }
+        ],
+        "url": {
+          "raw": "https://test.cupra.io/api/invoicer/invoices/{{INVOICEID}}",
+          "protocol": "https",
+          "host": [
+            "test",
+            "cupra",
+            "io"
+          ],
+          "path": [
+            "api",
+            "invoicer",
+            "invoices",
+            "{{INVOICEID}}"
+          ]
+        },
+        "description": "Generated from cURL: curl 'https://test.cupra.io/api/invoicer/invoices/01000000-ac14-0242-f741-08ddf55018d0' \\\r\n  -X 'DELETE' \\\r\n  -H 'accept: application/json, text/plain, */*' \\\r\n  -H 'accept-language: ru,en;q=0.9' \\\r\n  -b 'JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgxMDYxOTAsImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.8csxwRnxj5G_--LCy9Vu6OCGa4vkpwjOXFvVUNkDDA0' \\\r\n  -H 'locale: ru' \\\r\n  -H 'origin: https://test.cupra.io' \\\r\n  -H 'priority: u=1, i' \\\r\n  -H 'referer: https://test.cupra.io/ru/invoices' \\\r\n  -H 'sec-ch-ua: \"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'sec-fetch-dest: empty' \\\r\n  -H 'sec-fetch-mode: cors' \\\r\n  -H 'sec-fetch-site: same-origin' \\\r\n  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36'"
+      },
+      "response": []
+    },
+    {
+      "name": "Создать EX / T1  (с заполнением обязательных полей)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "let response = pm.response.json();\r",
+              "\r",
+              "pm.environment.set(\"EXT1ID\", response.id);\r",
+              "\r",
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json, text/plain, */*"
+          },
+          {
+            "key": "accept-language",
+            "value": "ru,en;q=0.9"
+          },
+          {
+            "key": "content-type",
+            "value": "application/json"
+          },
+          {
+            "key": "locale",
+            "value": "ru"
+          },
+          {
+            "key": "origin",
+            "value": "https://test.cupra.io"
+          },
+          {
+            "key": "priority",
+            "value": "u=1, i"
+          },
+          {
+            "key": "referer",
+            "value": "https://test.cupra.io/ru/ext/create"
+          },
+          {
+            "key": "sec-ch-ua",
+            "value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\""
+          },
+          {
+            "key": "sec-ch-ua-mobile",
+            "value": "?0"
+          },
+          {
+            "key": "sec-ch-ua-platform",
+            "value": "\"Windows\""
+          },
+          {
+            "key": "sec-fetch-dest",
+            "value": "empty"
+          },
+          {
+            "key": "sec-fetch-mode",
+            "value": "cors"
+          },
+          {
+            "key": "sec-fetch-site",
+            "value": "same-origin"
+          },
+          {
+            "key": "user-agent",
+            "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36"
+          },
+          {
+            "key": "Cookie",
+            "value": "JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgwMzI5OTksImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.IkJTZ1T8pelgNQZe-Zahm6eAhwCgf32wvTRED2VbPBU"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"id\": \"\",\r\n  \"mrn\": \"123AM\",\r\n  \"issueDate\": null,\r\n  \"closeDate\": null,\r\n  \"type\": {\r\n    \"id\": \"EX1\",\r\n    \"name\": \"EX-1\"\r\n  },\r\n  \"mrnState\": null,\r\n  \"grossWeight\": 3,\r\n  \"netWeight\": null,\r\n  \"cargoPlaces\": 1,\r\n  \"cost\": 100,\r\n  \"costCurrency\": {\r\n    \"isoCode\": \"EUR\"\r\n  },\r\n  \"verificationState\": {\r\n    \"id\": \"NEW\",\r\n    \"nameRu\": \"Новый\"\r\n  },\r\n  \"expiredDate\": \"2025-12-15T05:23:54.004Z\",\r\n  \"dau\": null,\r\n  \"dg\": null,\r\n  \"invoices\": [],\r\n  \"documents\": [],\r\n  \"inEdit\": true\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://test.cupra.io/api/invoicer/exportDeclarations/",
+          "protocol": "https",
+          "host": [
+            "test",
+            "cupra",
+            "io"
+          ],
+          "path": [
+            "api",
+            "invoicer",
+            "exportDeclarations",
+            ""
+          ]
+        },
+        "description": "Generated from cURL: curl 'https://test.cupra.io/api/invoicer/exportDeclarations/' \\\r\n  -H 'accept: application/json, text/plain, */*' \\\r\n  -H 'accept-language: ru,en;q=0.9' \\\r\n  -H 'content-type: application/json' \\\r\n  -b 'JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgwMzI5OTksImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.IkJTZ1T8pelgNQZe-Zahm6eAhwCgf32wvTRED2VbPBU' \\\r\n  -H 'locale: ru' \\\r\n  -H 'origin: https://test.cupra.io' \\\r\n  -H 'priority: u=1, i' \\\r\n  -H 'referer: https://test.cupra.io/ru/ext/create' \\\r\n  -H 'sec-ch-ua: \"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'sec-fetch-dest: empty' \\\r\n  -H 'sec-fetch-mode: cors' \\\r\n  -H 'sec-fetch-site: same-origin' \\\r\n  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36' \\\r\n  --data-raw '{\"id\":\"\",\"mrn\":\"123qwe\",\"issueDate\":null,\"closeDate\":null,\"type\":{\"id\":\"EX1\",\"name\":\"EX-1\"},\"mrnState\":null,\"grossWeight\":3,\"netWeight\":null,\"cargoPlaces\":1,\"cost\":100,\"costCurrency\":{\"isoCode\":\"EUR\"},\"verificationState\":{\"id\":\"NEW\",\"nameRu\":\"Новый\"},\"expiredDate\":\"2025-12-15T05:23:54.004Z\",\"dau\":null,\"dg\":null,\"invoices\":[],\"documents\":[],\"inEdit\":true}'"
+      },
+      "response": []
+    },
+    {
+      "name": "Удалить EX / T1",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json, text/plain, */*"
+          },
+          {
+            "key": "accept-language",
+            "value": "ru,en;q=0.9"
+          },
+          {
+            "key": "locale",
+            "value": "ru"
+          },
+          {
+            "key": "origin",
+            "value": "https://test.cupra.io"
+          },
+          {
+            "key": "priority",
+            "value": "u=1, i"
+          },
+          {
+            "key": "referer",
+            "value": "https://test.cupra.io/ru/ext"
+          },
+          {
+            "key": "sec-ch-ua",
+            "value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\""
+          },
+          {
+            "key": "sec-ch-ua-mobile",
+            "value": "?0"
+          },
+          {
+            "key": "sec-ch-ua-platform",
+            "value": "\"Windows\""
+          },
+          {
+            "key": "sec-fetch-dest",
+            "value": "empty"
+          },
+          {
+            "key": "sec-fetch-mode",
+            "value": "cors"
+          },
+          {
+            "key": "sec-fetch-site",
+            "value": "same-origin"
+          },
+          {
+            "key": "user-agent",
+            "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36"
+          },
+          {
+            "key": "Cookie",
+            "value": "JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgxMDYxOTAsImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.8csxwRnxj5G_--LCy9Vu6OCGa4vkpwjOXFvVUNkDDA0"
+          }
+        ],
+        "url": {
+          "raw": "https://test.cupra.io/api/invoicer/exportDeclarations/{{EXT1ID}}",
+          "protocol": "https",
+          "host": [
+            "test",
+            "cupra",
+            "io"
+          ],
+          "path": [
+            "api",
+            "invoicer",
+            "exportDeclarations",
+            "{{EXT1ID}}"
+          ]
+        },
+        "description": "Generated from cURL: curl 'https://test.cupra.io/api/invoicer/exportDeclarations/01000000-ac14-0242-5081-08ddf52f3fb1' \\\r\n  -X 'DELETE' \\\r\n  -H 'accept: application/json, text/plain, */*' \\\r\n  -H 'accept-language: ru,en;q=0.9' \\\r\n  -b 'JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgxMDYxOTAsImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.8csxwRnxj5G_--LCy9Vu6OCGa4vkpwjOXFvVUNkDDA0' \\\r\n  -H 'locale: ru' \\\r\n  -H 'origin: https://test.cupra.io' \\\r\n  -H 'priority: u=1, i' \\\r\n  -H 'referer: https://test.cupra.io/ru/ext' \\\r\n  -H 'sec-ch-ua: \"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'sec-fetch-dest: empty' \\\r\n  -H 'sec-fetch-mode: cors' \\\r\n  -H 'sec-fetch-site: same-origin' \\\r\n  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36'"
+      },
+      "response": []
+    },
+    {
+      "name": "Создать Cites (с заполнением обязательных полей)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "let response = pm.response.json();\r",
+              "\r",
+              "pm.environment.set(\"CITESID\", response.id);\r",
+              "\r",
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json, text/plain, */*"
+          },
+          {
+            "key": "accept-language",
+            "value": "ru,en;q=0.9"
+          },
+          {
+            "key": "content-type",
+            "value": "application/json"
+          },
+          {
+            "key": "locale",
+            "value": "ru"
+          },
+          {
+            "key": "origin",
+            "value": "https://test.cupra.io"
+          },
+          {
+            "key": "priority",
+            "value": "u=1, i"
+          },
+          {
+            "key": "referer",
+            "value": "https://test.cupra.io/ru/cites"
+          },
+          {
+            "key": "sec-ch-ua",
+            "value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\""
+          },
+          {
+            "key": "sec-ch-ua-mobile",
+            "value": "?0"
+          },
+          {
+            "key": "sec-ch-ua-platform",
+            "value": "\"Windows\""
+          },
+          {
+            "key": "sec-fetch-dest",
+            "value": "empty"
+          },
+          {
+            "key": "sec-fetch-mode",
+            "value": "cors"
+          },
+          {
+            "key": "sec-fetch-site",
+            "value": "same-origin"
+          },
+          {
+            "key": "user-agent",
+            "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36"
+          },
+          {
+            "key": "Cookie",
+            "value": "JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgwMzI5OTksImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.IkJTZ1T8pelgNQZe-Zahm6eAhwCgf32wvTRED2VbPBU"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"id\": \"\",\r\n  \"issueDate\": \"2025-09-16T10:49:00.000Z\",\r\n  \"number\": \"123AM\",\r\n  \"document\": null,\r\n  \"invoice\": null,\r\n  \"inEdit\": true\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://test.cupra.io/api/invoicer/citeses/",
+          "protocol": "https",
+          "host": [
+            "test",
+            "cupra",
+            "io"
+          ],
+          "path": [
+            "api",
+            "invoicer",
+            "citeses",
+            ""
+          ]
+        },
+        "description": "Generated from cURL: curl 'https://test.cupra.io/api/invoicer/citeses/' \\\r\n  -H 'accept: application/json, text/plain, */*' \\\r\n  -H 'accept-language: ru,en;q=0.9' \\\r\n  -H 'content-type: application/json' \\\r\n  -b 'JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgwMzI5OTksImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.IkJTZ1T8pelgNQZe-Zahm6eAhwCgf32wvTRED2VbPBU' \\\r\n  -H 'locale: ru' \\\r\n  -H 'origin: https://test.cupra.io' \\\r\n  -H 'priority: u=1, i' \\\r\n  -H 'referer: https://test.cupra.io/ru/cites' \\\r\n  -H 'sec-ch-ua: \"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'sec-fetch-dest: empty' \\\r\n  -H 'sec-fetch-mode: cors' \\\r\n  -H 'sec-fetch-site: same-origin' \\\r\n  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36' \\\r\n  --data-raw '{\"id\":\"\",\"issueDate\":\"2025-09-16T10:49:00.000Z\",\"number\":\"123qwe\",\"document\":null,\"invoice\":null,\"inEdit\":true}'"
+      },
+      "response": []
+    },
+    {
+      "name": "Удалить Cites",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json, text/plain, */*"
+          },
+          {
+            "key": "accept-language",
+            "value": "ru,en;q=0.9"
+          },
+          {
+            "key": "locale",
+            "value": "ru"
+          },
+          {
+            "key": "origin",
+            "value": "https://test.cupra.io"
+          },
+          {
+            "key": "priority",
+            "value": "u=1, i"
+          },
+          {
+            "key": "referer",
+            "value": "https://test.cupra.io/ru/cites"
+          },
+          {
+            "key": "sec-ch-ua",
+            "value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\""
+          },
+          {
+            "key": "sec-ch-ua-mobile",
+            "value": "?0"
+          },
+          {
+            "key": "sec-ch-ua-platform",
+            "value": "\"Windows\""
+          },
+          {
+            "key": "sec-fetch-dest",
+            "value": "empty"
+          },
+          {
+            "key": "sec-fetch-mode",
+            "value": "cors"
+          },
+          {
+            "key": "sec-fetch-site",
+            "value": "same-origin"
+          },
+          {
+            "key": "user-agent",
+            "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36"
+          },
+          {
+            "key": "Cookie",
+            "value": "JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgxMDYxOTAsImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.8csxwRnxj5G_--LCy9Vu6OCGa4vkpwjOXFvVUNkDDA0"
+          }
+        ],
+        "url": {
+          "raw": "https://test.cupra.io/api/invoicer/citeses/{{CITESID}}",
+          "protocol": "https",
+          "host": [
+            "test",
+            "cupra",
+            "io"
+          ],
+          "path": [
+            "api",
+            "invoicer",
+            "citeses",
+            "{{CITESID}}"
+          ]
+        },
+        "description": "Generated from cURL: curl 'https://test.cupra.io/api/invoicer/citeses/01000000-ac14-0242-917a-08ddf54f65e9' \\\r\n  -X 'DELETE' \\\r\n  -H 'accept: application/json, text/plain, */*' \\\r\n  -H 'accept-language: ru,en;q=0.9' \\\r\n  -b 'JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgxMDYxOTAsImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.8csxwRnxj5G_--LCy9Vu6OCGa4vkpwjOXFvVUNkDDA0' \\\r\n  -H 'locale: ru' \\\r\n  -H 'origin: https://test.cupra.io' \\\r\n  -H 'priority: u=1, i' \\\r\n  -H 'referer: https://test.cupra.io/ru/cites' \\\r\n  -H 'sec-ch-ua: \"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'sec-fetch-dest: empty' \\\r\n  -H 'sec-fetch-mode: cors' \\\r\n  -H 'sec-fetch-site: same-origin' \\\r\n  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36'"
+      },
+      "response": []
+    },
+    {
+      "name": "Добавить файл в DDE",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "let response = pm.response.json();\r",
+              "\r",
+              "pm.environment.set(\"FILEID\", response.id);\r",
+              "pm.environment.set(\"FILENAME\", response.fileName);\r",
+              "pm.environment.set(\"FILECONTENTTYPE\", response.contentType);\r",
+              "pm.environment.set(\"FILESTORAGEPATH\", response.fileStoragePath);\r",
+              "\r",
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "accept-language",
+            "value": "ru,en;q=0.9"
+          },
+          {
+            "key": "locale",
+            "value": "ru"
+          },
+          {
+            "key": "origin",
+            "value": "https://test.cupra.io"
+          },
+          {
+            "key": "priority",
+            "value": "u=1, i"
+          },
+          {
+            "key": "referer",
+            "value": "https://test.cupra.io/ru/dde"
+          },
+          {
+            "key": "sec-ch-ua",
+            "value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\""
+          },
+          {
+            "key": "sec-ch-ua-mobile",
+            "value": "?0"
+          },
+          {
+            "key": "sec-ch-ua-platform",
+            "value": "\"Windows\""
+          },
+          {
+            "key": "sec-fetch-dest",
+            "value": "empty"
+          },
+          {
+            "key": "sec-fetch-mode",
+            "value": "cors"
+          },
+          {
+            "key": "sec-fetch-site",
+            "value": "same-origin"
+          },
+          {
+            "key": "user-agent",
+            "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36"
+          },
+          {
+            "key": "Cookie",
+            "value": "JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgxMDYxOTAsImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.8csxwRnxj5G_--LCy9Vu6OCGa4vkpwjOXFvVUNkDDA0"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": "postman-cloud:///1f093293-cc80-48d0-b5f4-727143538583"
+            },
+            {
+              "key": "documentType",
+              "value": "INVOICEDDE",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://test.cupra.io/api/invoicer/v2/documents",
+          "protocol": "https",
+          "host": [
+            "test",
+            "cupra",
+            "io"
+          ],
+          "path": [
+            "api",
+            "invoicer",
+            "v2",
+            "documents"
+          ]
+        },
+        "description": "Generated from cURL: curl 'https://test.cupra.io/api/invoicer/v2/documents' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'accept-language: ru,en;q=0.9' \\\r\n  -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundaryK8DMaWWokpp2S3Ke' \\\r\n  -b 'JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgxMDYxOTAsImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.8csxwRnxj5G_--LCy9Vu6OCGa4vkpwjOXFvVUNkDDA0' \\\r\n  -H 'locale: ru' \\\r\n  -H 'origin: https://test.cupra.io' \\\r\n  -H 'priority: u=1, i' \\\r\n  -H 'referer: https://test.cupra.io/ru/dde' \\\r\n  -H 'sec-ch-ua: \"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'sec-fetch-dest: empty' \\\r\n  -H 'sec-fetch-mode: cors' \\\r\n  -H 'sec-fetch-site: same-origin' \\\r\n  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36' \\\r\n  --data-raw $'------WebKitFormBoundaryK8DMaWWokpp2S3Ke\\r\\nContent-Disposition: form-data; name=\"file\"; filename=\"dev_1.png\"\\r\\nContent-Type: image/png\\r\\n\\r\\n\\r\\n------WebKitFormBoundaryK8DMaWWokpp2S3Ke\\r\\nContent-Disposition: form-data; name=\"documentType\"\\r\\n\\r\\nINVOICEDDE\\r\\n------WebKitFormBoundaryK8DMaWWokpp2S3Ke--\\r\\n'"
+      },
+      "response": []
+    },
+    {
+      "name": "Создать DDE  (с заполнением обязательных полей)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "let response = pm.response.json();\r",
+              "\r",
+              "pm.environment.set(\"DDEID\", response.id);\r",
+              "\r",
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json, text/plain, */*"
+          },
+          {
+            "key": "accept-language",
+            "value": "ru,en;q=0.9"
+          },
+          {
+            "key": "content-type",
+            "value": "application/json"
+          },
+          {
+            "key": "locale",
+            "value": "ru"
+          },
+          {
+            "key": "origin",
+            "value": "https://test.cupra.io"
+          },
+          {
+            "key": "priority",
+            "value": "u=1, i"
+          },
+          {
+            "key": "referer",
+            "value": "https://test.cupra.io/ru/dde"
+          },
+          {
+            "key": "sec-ch-ua",
+            "value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\""
+          },
+          {
+            "key": "sec-ch-ua-mobile",
+            "value": "?0"
+          },
+          {
+            "key": "sec-ch-ua-platform",
+            "value": "\"Windows\""
+          },
+          {
+            "key": "sec-fetch-dest",
+            "value": "empty"
+          },
+          {
+            "key": "sec-fetch-mode",
+            "value": "cors"
+          },
+          {
+            "key": "sec-fetch-site",
+            "value": "same-origin"
+          },
+          {
+            "key": "user-agent",
+            "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36"
+          },
+          {
+            "key": "Cookie",
+            "value": "JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgwMzI5OTksImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.IkJTZ1T8pelgNQZe-Zahm6eAhwCgf32wvTRED2VbPBU"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"id\": \"\",\r\n  \"issueDate\": null,\r\n  \"number\": \"123AM\",\r\n  \"invoice\": {\r\n    \"id\": \"01000000-ac14-0242-d020-08ddf4e051c3\",\r\n    \"number\": \"16092025\",\r\n    \"date\": \"2025-09-16\",\r\n    \"orders\": [],\r\n    \"__typename\": \"Invoice\",\r\n    \"selectedCell\": true\r\n  },\r\n  \"createdDateUtc\": null,\r\n  \"invoiceId\": \"\",\r\n  \"documents\": [\r\n    {\r\n      \"id\": \"{{FILEID}}\",\r\n      \"fileName\": \"{{FILENAME}}\",\r\n      \"contentType\": \"{{FILECONTENTTYPE}}\",\r\n      \"fileStoragePath\": \"{{FILESTORAGEPATH}}\",\r\n      \"fileViewType\": \"\",\r\n      \"documentType\": \"INVOICEDDE\"\r\n    }\r\n  ],\r\n  \"companyId\": null,\r\n  \"lastModifiedDateUtc\": null,\r\n  \"inEdit\": true\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://test.cupra.io/api/invoicer/v2/dde",
+          "protocol": "https",
+          "host": [
+            "test",
+            "cupra",
+            "io"
+          ],
+          "path": [
+            "api",
+            "invoicer",
+            "v2",
+            "dde"
+          ]
+        },
+        "description": "Generated from cURL: curl 'https://test.cupra.io/api/invoicer/v2/dde' \\\r\n  -H 'accept: application/json, text/plain, */*' \\\r\n  -H 'accept-language: ru,en;q=0.9' \\\r\n  -H 'content-type: application/json' \\\r\n  -b 'JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgwMzI5OTksImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.IkJTZ1T8pelgNQZe-Zahm6eAhwCgf32wvTRED2VbPBU' \\\r\n  -H 'locale: ru' \\\r\n  -H 'origin: https://test.cupra.io' \\\r\n  -H 'priority: u=1, i' \\\r\n  -H 'referer: https://test.cupra.io/ru/dde' \\\r\n  -H 'sec-ch-ua: \"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'sec-fetch-dest: empty' \\\r\n  -H 'sec-fetch-mode: cors' \\\r\n  -H 'sec-fetch-site: same-origin' \\\r\n  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36' \\\r\n  --data-raw '{\"id\":\"\",\"issueDate\":null,\"number\":\"123\",\"invoice\":{\"id\":\"01000000-ac14-0242-d020-08ddf4e051c3\",\"number\":\"16092025\",\"date\":\"2025-09-16\",\"orders\":[],\"__typename\":\"Invoice\",\"selectedCell\":true},\"createdDateUtc\":null,\"invoiceId\":\"\",\"documents\":[{\"id\":\"01000000-ac14-0242-dce7-08ddf4f62773\",\"fileName\":\"dev_1.png\",\"contentType\":\"image/png\",\"fileStoragePath\":\"oms-cupra-invoicer/documents/01000000-ac14-0242-dce7-08ddf4f62773.png\",\"fileViewType\":\"\",\"documentType\":\"INVOICEDDE\"}],\"companyId\":null,\"lastModifiedDateUtc\":null,\"inEdit\":true}'"
+      },
+      "response": []
+    },
+    {
+      "name": "Удалить DDE",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json, text/plain, */*"
+          },
+          {
+            "key": "accept-language",
+            "value": "ru,en;q=0.9"
+          },
+          {
+            "key": "locale",
+            "value": "ru"
+          },
+          {
+            "key": "origin",
+            "value": "https://test.cupra.io"
+          },
+          {
+            "key": "priority",
+            "value": "u=1, i"
+          },
+          {
+            "key": "referer",
+            "value": "https://test.cupra.io/ru/dde"
+          },
+          {
+            "key": "sec-ch-ua",
+            "value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\""
+          },
+          {
+            "key": "sec-ch-ua-mobile",
+            "value": "?0"
+          },
+          {
+            "key": "sec-ch-ua-platform",
+            "value": "\"Windows\""
+          },
+          {
+            "key": "sec-fetch-dest",
+            "value": "empty"
+          },
+          {
+            "key": "sec-fetch-mode",
+            "value": "cors"
+          },
+          {
+            "key": "sec-fetch-site",
+            "value": "same-origin"
+          },
+          {
+            "key": "user-agent",
+            "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36"
+          },
+          {
+            "key": "Cookie",
+            "value": "JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgxMDYxOTAsImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.8csxwRnxj5G_--LCy9Vu6OCGa4vkpwjOXFvVUNkDDA0"
+          }
+        ],
+        "url": {
+          "raw": "https://test.cupra.io/api/invoicer/v2/dde/{{DDEID}}",
+          "protocol": "https",
+          "host": [
+            "test",
+            "cupra",
+            "io"
+          ],
+          "path": [
+            "api",
+            "invoicer",
+            "v2",
+            "dde",
+            "{{DDEID}}"
+          ]
+        },
+        "description": "Generated from cURL: curl 'https://test.cupra.io/api/invoicer/v2/dde/01000000-ac14-0242-b1ee-08ddf54f7069' \\\r\n  -X 'DELETE' \\\r\n  -H 'accept: application/json, text/plain, */*' \\\r\n  -H 'accept-language: ru,en;q=0.9' \\\r\n  -b 'JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgxMDYxOTAsImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.8csxwRnxj5G_--LCy9Vu6OCGa4vkpwjOXFvVUNkDDA0' \\\r\n  -H 'locale: ru' \\\r\n  -H 'origin: https://test.cupra.io' \\\r\n  -H 'priority: u=1, i' \\\r\n  -H 'referer: https://test.cupra.io/ru/dde' \\\r\n  -H 'sec-ch-ua: \"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'sec-fetch-dest: empty' \\\r\n  -H 'sec-fetch-mode: cors' \\\r\n  -H 'sec-fetch-site: same-origin' \\\r\n  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36'"
+      },
+      "response": []
+    },
+    {
+      "name": "Добавить файл в Packing",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "let response = pm.response.json();\r",
+              "\r",
+              "pm.environment.set(\"FILEID\", response.id);\r",
+              "pm.environment.set(\"FILENAME\", response.fileName);\r",
+              "pm.environment.set(\"FILECONTENTTYPE\", response.contentType);\r",
+              "pm.environment.set(\"FILESTORAGEPATH\", response.fileStoragePath);\r",
+              "\r",
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "accept-language",
+            "value": "ru,en;q=0.9"
+          },
+          {
+            "key": "locale",
+            "value": "ru"
+          },
+          {
+            "key": "origin",
+            "value": "https://test.cupra.io"
+          },
+          {
+            "key": "priority",
+            "value": "u=1, i"
+          },
+          {
+            "key": "referer",
+            "value": "https://test.cupra.io/ru/packing-lists"
+          },
+          {
+            "key": "sec-ch-ua",
+            "value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\""
+          },
+          {
+            "key": "sec-ch-ua-mobile",
+            "value": "?0"
+          },
+          {
+            "key": "sec-ch-ua-platform",
+            "value": "\"Windows\""
+          },
+          {
+            "key": "sec-fetch-dest",
+            "value": "empty"
+          },
+          {
+            "key": "sec-fetch-mode",
+            "value": "cors"
+          },
+          {
+            "key": "sec-fetch-site",
+            "value": "same-origin"
+          },
+          {
+            "key": "user-agent",
+            "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36"
+          },
+          {
+            "key": "Cookie",
+            "value": "JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgxMDYxOTAsImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.8csxwRnxj5G_--LCy9Vu6OCGa4vkpwjOXFvVUNkDDA0"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": "postman-cloud:///1f093293-cc80-48d0-b5f4-727143538583"
+            },
+            {
+              "key": "documentType",
+              "value": "INVOICEPACKINGLIST",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://test.cupra.io/api/invoicer/v2/documents",
+          "protocol": "https",
+          "host": [
+            "test",
+            "cupra",
+            "io"
+          ],
+          "path": [
+            "api",
+            "invoicer",
+            "v2",
+            "documents"
+          ]
+        },
+        "description": "Generated from cURL: curl 'https://test.cupra.io/api/invoicer/v2/documents' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'accept-language: ru,en;q=0.9' \\\r\n  -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundaryBBWBeKKkGk5ao4fK' \\\r\n  -b 'JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgxMDYxOTAsImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.8csxwRnxj5G_--LCy9Vu6OCGa4vkpwjOXFvVUNkDDA0' \\\r\n  -H 'locale: ru' \\\r\n  -H 'origin: https://test.cupra.io' \\\r\n  -H 'priority: u=1, i' \\\r\n  -H 'referer: https://test.cupra.io/ru/packing-lists' \\\r\n  -H 'sec-ch-ua: \"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'sec-fetch-dest: empty' \\\r\n  -H 'sec-fetch-mode: cors' \\\r\n  -H 'sec-fetch-site: same-origin' \\\r\n  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36' \\\r\n  --data-raw $'------WebKitFormBoundaryBBWBeKKkGk5ao4fK\\r\\nContent-Disposition: form-data; name=\"file\"; filename=\"dev_1.png\"\\r\\nContent-Type: image/png\\r\\n\\r\\n\\r\\n------WebKitFormBoundaryBBWBeKKkGk5ao4fK\\r\\nContent-Disposition: form-data; name=\"documentType\"\\r\\n\\r\\nINVOICEPACKINGLIST\\r\\n------WebKitFormBoundaryBBWBeKKkGk5ao4fK--\\r\\n'"
+      },
+      "response": []
+    },
+    {
+      "name": "Создать Packing (с заполнением обязательных полей)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "let response = pm.response.json();\r",
+              "\r",
+              "pm.environment.set(\"PACKINGID\", response.id);\r",
+              "\r",
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json, text/plain, */*"
+          },
+          {
+            "key": "accept-language",
+            "value": "ru,en;q=0.9"
+          },
+          {
+            "key": "content-type",
+            "value": "application/json"
+          },
+          {
+            "key": "locale",
+            "value": "ru"
+          },
+          {
+            "key": "origin",
+            "value": "https://test.cupra.io"
+          },
+          {
+            "key": "priority",
+            "value": "u=1, i"
+          },
+          {
+            "key": "referer",
+            "value": "https://test.cupra.io/ru/packing-lists"
+          },
+          {
+            "key": "sec-ch-ua",
+            "value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\""
+          },
+          {
+            "key": "sec-ch-ua-mobile",
+            "value": "?0"
+          },
+          {
+            "key": "sec-ch-ua-platform",
+            "value": "\"Windows\""
+          },
+          {
+            "key": "sec-fetch-dest",
+            "value": "empty"
+          },
+          {
+            "key": "sec-fetch-mode",
+            "value": "cors"
+          },
+          {
+            "key": "sec-fetch-site",
+            "value": "same-origin"
+          },
+          {
+            "key": "user-agent",
+            "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36"
+          },
+          {
+            "key": "Cookie",
+            "value": "JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgwMzI5OTksImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.IkJTZ1T8pelgNQZe-Zahm6eAhwCgf32wvTRED2VbPBU"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"id\": \"\",\r\n    \"issueDate\": null,\r\n    \"number\": \"122AM\",\r\n    \"invoices\": [\r\n        {\r\n            \"id\": \"01000000-ac14-0242-d020-08ddf4e051c3\",\r\n            \"number\": \"16092025\",\r\n            \"date\": \"2025-09-16\",\r\n            \"orders\": [],\r\n            \"__typename\": \"Invoice\",\r\n            \"selectedCell\": true\r\n        }\r\n    ],\r\n    \"createdDateUtc\": null,\r\n    \"invoiceId\": \"\",\r\n    \"documents\": [\r\n        {\r\n            \"id\": \"{{FILEID}}\",\r\n            \"fileName\": \"{{FILENAME}}\",\r\n            \"contentType\": \"{{FILECONTENTTYPE}}\",\r\n            \"fileStoragePath\": \"{{FILESTORAGEPATH}}\",\r\n            \"fileViewType\": \"\",\r\n            \"documentType\": \"INVOICEPACKINGLIST\"\r\n        }\r\n    ],\r\n    \"companyId\": null,\r\n    \"lastModifiedDateUtc\": null,\r\n    \"inEdit\": true\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://test.cupra.io/api/invoicer/v2/packing-lists",
+          "protocol": "https",
+          "host": [
+            "test",
+            "cupra",
+            "io"
+          ],
+          "path": [
+            "api",
+            "invoicer",
+            "v2",
+            "packing-lists"
+          ]
+        },
+        "description": "Generated from cURL: curl 'https://test.cupra.io/api/invoicer/v2/packing-lists' \\\r\n  -H 'accept: application/json, text/plain, */*' \\\r\n  -H 'accept-language: ru,en;q=0.9' \\\r\n  -H 'content-type: application/json' \\\r\n  -b 'JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgwMzI5OTksImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.IkJTZ1T8pelgNQZe-Zahm6eAhwCgf32wvTRED2VbPBU' \\\r\n  -H 'locale: ru' \\\r\n  -H 'origin: https://test.cupra.io' \\\r\n  -H 'priority: u=1, i' \\\r\n  -H 'referer: https://test.cupra.io/ru/packing-lists' \\\r\n  -H 'sec-ch-ua: \"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'sec-fetch-dest: empty' \\\r\n  -H 'sec-fetch-mode: cors' \\\r\n  -H 'sec-fetch-site: same-origin' \\\r\n  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36' \\\r\n  --data-raw '{\"id\":\"\",\"issueDate\":null,\"number\":\"123qwe\",\"invoices\":[{\"id\":\"01000000-ac14-0242-d020-08ddf4e051c3\",\"number\":\"16092025\",\"date\":\"2025-09-16\",\"orders\":[],\"__typename\":\"Invoice\",\"selectedCell\":true}],\"createdDateUtc\":null,\"invoiceId\":\"\",\"documents\":[{\"id\":\"01000000-ac14-0242-c47a-08ddf4f83798\",\"fileName\":\"dev_1.png\",\"contentType\":\"image/png\",\"fileStoragePath\":\"oms-cupra-invoicer/documents/01000000-ac14-0242-c47a-08ddf4f83798.png\",\"fileViewType\":\"\",\"documentType\":\"INVOICEPACKINGLIST\"}],\"companyId\":null,\"lastModifiedDateUtc\":null,\"inEdit\":true}'"
+      },
+      "response": []
+    },
+    {
+      "name": "Удалить Packing",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json, text/plain, */*"
+          },
+          {
+            "key": "accept-language",
+            "value": "ru,en;q=0.9"
+          },
+          {
+            "key": "locale",
+            "value": "ru"
+          },
+          {
+            "key": "origin",
+            "value": "https://test.cupra.io"
+          },
+          {
+            "key": "priority",
+            "value": "u=1, i"
+          },
+          {
+            "key": "referer",
+            "value": "https://test.cupra.io/ru/packing-lists"
+          },
+          {
+            "key": "sec-ch-ua",
+            "value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\""
+          },
+          {
+            "key": "sec-ch-ua-mobile",
+            "value": "?0"
+          },
+          {
+            "key": "sec-ch-ua-platform",
+            "value": "\"Windows\""
+          },
+          {
+            "key": "sec-fetch-dest",
+            "value": "empty"
+          },
+          {
+            "key": "sec-fetch-mode",
+            "value": "cors"
+          },
+          {
+            "key": "sec-fetch-site",
+            "value": "same-origin"
+          },
+          {
+            "key": "user-agent",
+            "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36"
+          },
+          {
+            "key": "Cookie",
+            "value": "JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgxMDYxOTAsImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.8csxwRnxj5G_--LCy9Vu6OCGa4vkpwjOXFvVUNkDDA0"
+          }
+        ],
+        "url": {
+          "raw": "https://test.cupra.io/api/invoicer/v2/packing-lists/{{PACKINGID}}",
+          "protocol": "https",
+          "host": [
+            "test",
+            "cupra",
+            "io"
+          ],
+          "path": [
+            "api",
+            "invoicer",
+            "v2",
+            "packing-lists",
+            "{{PACKINGID}}"
+          ]
+        },
+        "description": "Generated from cURL: curl 'https://test.cupra.io/api/invoicer/v2/packing-lists/01000000-ac14-0242-efe7-08ddf5a9d061' \\\r\n  -X 'DELETE' \\\r\n  -H 'accept: application/json, text/plain, */*' \\\r\n  -H 'accept-language: ru,en;q=0.9' \\\r\n  -b 'JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgxMDYxOTAsImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.8csxwRnxj5G_--LCy9Vu6OCGa4vkpwjOXFvVUNkDDA0' \\\r\n  -H 'locale: ru' \\\r\n  -H 'origin: https://test.cupra.io' \\\r\n  -H 'priority: u=1, i' \\\r\n  -H 'referer: https://test.cupra.io/ru/packing-lists' \\\r\n  -H 'sec-ch-ua: \"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'sec-fetch-dest: empty' \\\r\n  -H 'sec-fetch-mode: cors' \\\r\n  -H 'sec-fetch-site: same-origin' \\\r\n  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36'"
+      },
+      "response": []
+    },
+    {
+      "name": "Создать маркировку (с заполнением обязательных полей)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "let response = pm.response.json();\r",
+              "\r",
+              "pm.environment.set(\"MATRIXID\", response.id);\r",
+              "\r",
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json, text/plain, */*"
+          },
+          {
+            "key": "accept-language",
+            "value": "ru,en;q=0.9"
+          },
+          {
+            "key": "content-type",
+            "value": "application/json"
+          },
+          {
+            "key": "locale",
+            "value": "ru"
+          },
+          {
+            "key": "origin",
+            "value": "https://test.cupra.io"
+          },
+          {
+            "key": "priority",
+            "value": "u=1, i"
+          },
+          {
+            "key": "referer",
+            "value": "https://test.cupra.io/ru/datamatrix"
+          },
+          {
+            "key": "sec-ch-ua",
+            "value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\""
+          },
+          {
+            "key": "sec-ch-ua-mobile",
+            "value": "?0"
+          },
+          {
+            "key": "sec-ch-ua-platform",
+            "value": "\"Windows\""
+          },
+          {
+            "key": "sec-fetch-dest",
+            "value": "empty"
+          },
+          {
+            "key": "sec-fetch-mode",
+            "value": "cors"
+          },
+          {
+            "key": "sec-fetch-site",
+            "value": "same-origin"
+          },
+          {
+            "key": "user-agent",
+            "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36"
+          },
+          {
+            "key": "Cookie",
+            "value": "JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgwMzI5OTksImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.IkJTZ1T8pelgNQZe-Zahm6eAhwCgf32wvTRED2VbPBU"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"order\": {\r\n    \"id\": \"ccf5225b-26f4-42c4-bb94-127175969b57\",\r\n    \"number\": \"123AM\",\r\n    \"client\": {\r\n      \"id\": \"b6600000-5d86-0015-0323-08dc92053b6f\",\r\n      \"nic\": \"9640_3435_Климанская-25\",\r\n      \"partnerWarehouses\": [],\r\n      \"__typename\": \"Client\",\r\n      \"clientCompanies\": [\r\n        {\r\n          \"id\": \"00030000-ac12-0242-a34d-08dd14ffc8ac\",\r\n          \"inn\": \"666700091030\",\r\n          \"name\": \"ИП Климанская Елена Сергеевна\",\r\n          \"__typename\": \"ClientCompany\"\r\n        }\r\n      ]\r\n    },\r\n    \"cargoSlotsCount\": 0,\r\n    \"weightCargoSlots\": 0,\r\n    \"status\": {\r\n      \"id\": \"NEW\",\r\n      \"nameRu\": \"Новая заявка\",\r\n      \"nameEn\": \"New order\",\r\n      \"__typename\": \"OrderStatusDto\"\r\n    },\r\n    \"createdDate\": \"2025-09-15\",\r\n    \"wayBills\": [],\r\n    \"packingStatus\": {\r\n      \"id\": \"NO_INVOICE\",\r\n      \"nameEn\": \"No Invoice\",\r\n      \"nameRu\": \"Нет инвойса\",\r\n      \"__typename\": \"PackingStatusDto\"\r\n    },\r\n    \"formlableStatus\": null,\r\n    \"tags\": [\r\n      {\r\n        \"name\": \"TARIF UPDATE\",\r\n        \"__typename\": \"Tag\"\r\n      }\r\n    ],\r\n    \"marks\": null,\r\n    \"invoices\": [],\r\n    \"totalInvoicePrice\": 0,\r\n    \"warehouseMarking\": null,\r\n    \"nettoBrutto\": 0.18,\r\n    \"citesCount\": 0,\r\n    \"controlMarkFursCount\": null,\r\n    \"controlMarkSheepskinsCount\": null,\r\n    \"companies\": [],\r\n    \"rowVersion\": 0,\r\n    \"__typename\": \"Order\",\r\n    \"exportDeclarations\": [],\r\n    \"senders\": [],\r\n    \"selectedCell\": true\r\n  },\r\n  \"productType\": {\r\n    \"nameRu\": \"Одежда верхняя\",\r\n    \"nameEn\": \"Outerwear\",\r\n    \"gs1Code\": \"\",\r\n    \"id\": \"a7e2c1b2-1ed2-43e3-920a-7b7eb35c031c\",\r\n    \"__typename\": \"ProductType\"\r\n  },\r\n  \"createdDateUtc\": null,\r\n  \"inEdit\": true\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://test.cupra.io/api/orders/v1/Datamatrix/",
+          "protocol": "https",
+          "host": [
+            "test",
+            "cupra",
+            "io"
+          ],
+          "path": [
+            "api",
+            "orders",
+            "v1",
+            "Datamatrix",
+            ""
+          ]
+        },
+        "description": "Generated from cURL: curl 'https://test.cupra.io/api/orders/v1/Datamatrix/' \\\r\n  -H 'accept: application/json, text/plain, */*' \\\r\n  -H 'accept-language: ru,en;q=0.9' \\\r\n  -H 'content-type: application/json' \\\r\n  -b 'JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgwMzI5OTksImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.IkJTZ1T8pelgNQZe-Zahm6eAhwCgf32wvTRED2VbPBU' \\\r\n  -H 'locale: ru' \\\r\n  -H 'origin: https://test.cupra.io' \\\r\n  -H 'priority: u=1, i' \\\r\n  -H 'referer: https://test.cupra.io/ru/datamatrix' \\\r\n  -H 'sec-ch-ua: \"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'sec-fetch-dest: empty' \\\r\n  -H 'sec-fetch-mode: cors' \\\r\n  -H 'sec-fetch-site: same-origin' \\\r\n  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36' \\\r\n  --data-raw '{\"order\":{\"id\":\"ccf5225b-26f4-42c4-bb94-127175969b57\",\"number\":\"12378\",\"client\":{\"id\":\"b6600000-5d86-0015-0323-08dc92053b6f\",\"nic\":\"9640_3435_Климанская-25\",\"partnerWarehouses\":[],\"__typename\":\"Client\",\"clientCompanies\":[{\"id\":\"00030000-ac12-0242-a34d-08dd14ffc8ac\",\"inn\":\"666700091030\",\"name\":\"ИП Климанская Елена Сергеевна\",\"__typename\":\"ClientCompany\"}]},\"cargoSlotsCount\":0,\"weightCargoSlots\":0,\"status\":{\"id\":\"NEW\",\"nameRu\":\"Новая заявка\",\"nameEn\":\"New order\",\"__typename\":\"OrderStatusDto\"},\"createdDate\":\"2025-09-15\",\"wayBills\":[],\"packingStatus\":{\"id\":\"NO_INVOICE\",\"nameEn\":\"No Invoice\",\"nameRu\":\"Нет инвойса\",\"__typename\":\"PackingStatusDto\"},\"formlableStatus\":null,\"tags\":[{\"name\":\"TARIF UPDATE\",\"__typename\":\"Tag\"}],\"marks\":null,\"invoices\":[],\"totalInvoicePrice\":0,\"warehouseMarking\":null,\"nettoBrutto\":0.18,\"citesCount\":0,\"controlMarkFursCount\":null,\"controlMarkSheepskinsCount\":null,\"companies\":[],\"rowVersion\":0,\"__typename\":\"Order\",\"exportDeclarations\":[],\"senders\":[],\"selectedCell\":true},\"productType\":{\"nameRu\":\"Одежда верхняя\",\"nameEn\":\"Outerwear\",\"gs1Code\":\"\",\"id\":\"a7e2c1b2-1ed2-43e3-920a-7b7eb35c031c\",\"__typename\":\"ProductType\"},\"createdDateUtc\":null,\"inEdit\":true}'"
+      },
+      "response": []
+    },
+    {
+      "name": "Удалить маркировку",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json, text/plain, */*"
+          },
+          {
+            "key": "accept-language",
+            "value": "ru,en;q=0.9"
+          },
+          {
+            "key": "locale",
+            "value": "ru"
+          },
+          {
+            "key": "origin",
+            "value": "https://test.cupra.io"
+          },
+          {
+            "key": "priority",
+            "value": "u=1, i"
+          },
+          {
+            "key": "referer",
+            "value": "https://test.cupra.io/ru/datamatrix"
+          },
+          {
+            "key": "sec-ch-ua",
+            "value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\""
+          },
+          {
+            "key": "sec-ch-ua-mobile",
+            "value": "?0"
+          },
+          {
+            "key": "sec-ch-ua-platform",
+            "value": "\"Windows\""
+          },
+          {
+            "key": "sec-fetch-dest",
+            "value": "empty"
+          },
+          {
+            "key": "sec-fetch-mode",
+            "value": "cors"
+          },
+          {
+            "key": "sec-fetch-site",
+            "value": "same-origin"
+          },
+          {
+            "key": "user-agent",
+            "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36"
+          },
+          {
+            "key": "Cookie",
+            "value": "JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgxMDYxOTAsImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.8csxwRnxj5G_--LCy9Vu6OCGa4vkpwjOXFvVUNkDDA0"
+          }
+        ],
+        "url": {
+          "raw": "https://test.cupra.io/api/orders/v1/Datamatrix/{{MATRIXID}}",
+          "protocol": "https",
+          "host": [
+            "test",
+            "cupra",
+            "io"
+          ],
+          "path": [
+            "api",
+            "orders",
+            "v1",
+            "Datamatrix",
+            "{{MATRIXID}}"
+          ]
+        },
+        "description": "Generated from cURL: curl 'https://test.cupra.io/api/orders/v1/Datamatrix/00130000-ac14-0242-5fb9-08ddf5aaeace' \\\r\n  -X 'DELETE' \\\r\n  -H 'accept: application/json, text/plain, */*' \\\r\n  -H 'accept-language: ru,en;q=0.9' \\\r\n  -b 'JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgxMDYxOTAsImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.8csxwRnxj5G_--LCy9Vu6OCGa4vkpwjOXFvVUNkDDA0' \\\r\n  -H 'locale: ru' \\\r\n  -H 'origin: https://test.cupra.io' \\\r\n  -H 'priority: u=1, i' \\\r\n  -H 'referer: https://test.cupra.io/ru/datamatrix' \\\r\n  -H 'sec-ch-ua: \"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'sec-fetch-dest: empty' \\\r\n  -H 'sec-fetch-mode: cors' \\\r\n  -H 'sec-fetch-site: same-origin' \\\r\n  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36'"
+      },
+      "response": []
+    },
+    {
+      "name": "Создать КИЗ (с заполнением обязательных полей)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "let response = pm.response.json();\r",
+              "\r",
+              "pm.environment.set(\"KONTROLMARKSID\", response.id);\r",
+              "\r",
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json, text/plain, */*"
+          },
+          {
+            "key": "accept-language",
+            "value": "ru,en;q=0.9"
+          },
+          {
+            "key": "content-type",
+            "value": "application/json"
+          },
+          {
+            "key": "locale",
+            "value": "ru"
+          },
+          {
+            "key": "origin",
+            "value": "https://test.cupra.io"
+          },
+          {
+            "key": "priority",
+            "value": "u=1, i"
+          },
+          {
+            "key": "referer",
+            "value": "https://test.cupra.io/ru/kiz"
+          },
+          {
+            "key": "sec-ch-ua",
+            "value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\""
+          },
+          {
+            "key": "sec-ch-ua-mobile",
+            "value": "?0"
+          },
+          {
+            "key": "sec-ch-ua-platform",
+            "value": "\"Windows\""
+          },
+          {
+            "key": "sec-fetch-dest",
+            "value": "empty"
+          },
+          {
+            "key": "sec-fetch-mode",
+            "value": "cors"
+          },
+          {
+            "key": "sec-fetch-site",
+            "value": "same-origin"
+          },
+          {
+            "key": "user-agent",
+            "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36"
+          },
+          {
+            "key": "Cookie",
+            "value": "JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgxMDYxOTAsImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.8csxwRnxj5G_--LCy9Vu6OCGa4vkpwjOXFvVUNkDDA0"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"order\": {\r\n        \"id\": \"ccf5225b-26f4-42c4-bb94-127175969b57\",\r\n        \"number\": \"12378\",\r\n        \"client\": {\r\n            \"id\": \"b6600000-5d86-0015-0323-08dc92053b6f\",\r\n            \"nic\": \"9640_3435_Климанская-25\",\r\n            \"partnerWarehouses\": [],\r\n            \"__typename\": \"Client\",\r\n            \"clientCompanies\": [\r\n                {\r\n                    \"id\": \"00030000-ac12-0242-a34d-08dd14ffc8ac\",\r\n                    \"inn\": \"666700091030\",\r\n                    \"name\": \"ИП Климанская Елена Сергеевна\",\r\n                    \"__typename\": \"ClientCompany\"\r\n                }\r\n            ]\r\n        },\r\n        \"cargoSlotsCount\": 0,\r\n        \"weightCargoSlots\": 0,\r\n        \"status\": {\r\n            \"id\": \"NEW\",\r\n            \"nameRu\": \"Новая заявка\",\r\n            \"nameEn\": \"New order\",\r\n            \"__typename\": \"OrderStatusDto\"\r\n        },\r\n        \"createdDate\": \"2025-09-15\",\r\n        \"wayBills\": [],\r\n        \"packingStatus\": {\r\n            \"id\": \"NO_INVOICE\",\r\n            \"nameEn\": \"No Invoice\",\r\n            \"nameRu\": \"Нет инвойса\",\r\n            \"__typename\": \"PackingStatusDto\"\r\n        },\r\n        \"formlableStatus\": null,\r\n        \"tags\": [\r\n            {\r\n                \"name\": \"TARIF UPDATE\",\r\n                \"__typename\": \"Tag\"\r\n            }\r\n        ],\r\n        \"marks\": null,\r\n        \"totalInvoicePrice\": 0,\r\n        \"warehouseMarking\": null,\r\n        \"nettoBrutto\": 0.18,\r\n        \"citesCount\": 0,\r\n        \"controlMarkFursCount\": null,\r\n        \"controlMarkSheepskinsCount\": null,\r\n        \"companies\": [],\r\n        \"rowVersion\": 0,\r\n        \"__typename\": \"Order\",\r\n        \"exportDeclarations\": [],\r\n        \"senders\": [],\r\n        \"selectedCell\": true\r\n    },\r\n    \"requestDate\": null,\r\n    \"requestNumber\": \"123AM\",\r\n    \"createdDateUtc\": null,\r\n    \"inEdit\": true\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://test.cupra.io/api/orders/v1/ControlMarks/",
+          "protocol": "https",
+          "host": [
+            "test",
+            "cupra",
+            "io"
+          ],
+          "path": [
+            "api",
+            "orders",
+            "v1",
+            "ControlMarks",
+            ""
+          ]
+        },
+        "description": "Generated from cURL: curl 'https://test.cupra.io/api/orders/v1/ControlMarks/' \\\r\n  -H 'accept: application/json, text/plain, */*' \\\r\n  -H 'accept-language: ru,en;q=0.9' \\\r\n  -H 'content-type: application/json' \\\r\n  -b 'JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgxMDYxOTAsImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.8csxwRnxj5G_--LCy9Vu6OCGa4vkpwjOXFvVUNkDDA0' \\\r\n  -H 'locale: ru' \\\r\n  -H 'origin: https://test.cupra.io' \\\r\n  -H 'priority: u=1, i' \\\r\n  -H 'referer: https://test.cupra.io/ru/kiz' \\\r\n  -H 'sec-ch-ua: \"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'sec-fetch-dest: empty' \\\r\n  -H 'sec-fetch-mode: cors' \\\r\n  -H 'sec-fetch-site: same-origin' \\\r\n  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36' \\\r\n  --data-raw '{\"order\":{\"id\":\"ccf5225b-26f4-42c4-bb94-127175969b57\",\"number\":\"12378\",\"client\":{\"id\":\"b6600000-5d86-0015-0323-08dc92053b6f\",\"nic\":\"9640_3435_Климанская-25\",\"partnerWarehouses\":[],\"__typename\":\"Client\",\"clientCompanies\":[{\"id\":\"00030000-ac12-0242-a34d-08dd14ffc8ac\",\"inn\":\"666700091030\",\"name\":\"ИП Климанская Елена Сергеевна\",\"__typename\":\"ClientCompany\"}]},\"cargoSlotsCount\":0,\"weightCargoSlots\":0,\"status\":{\"id\":\"NEW\",\"nameRu\":\"Новая заявка\",\"nameEn\":\"New order\",\"__typename\":\"OrderStatusDto\"},\"createdDate\":\"2025-09-15\",\"wayBills\":[],\"packingStatus\":{\"id\":\"NO_INVOICE\",\"nameEn\":\"No Invoice\",\"nameRu\":\"Нет инвойса\",\"__typename\":\"PackingStatusDto\"},\"formlableStatus\":null,\"tags\":[{\"name\":\"TARIF UPDATE\",\"__typename\":\"Tag\"}],\"marks\":null,\"totalInvoicePrice\":0,\"warehouseMarking\":null,\"nettoBrutto\":0.18,\"citesCount\":0,\"controlMarkFursCount\":null,\"controlMarkSheepskinsCount\":null,\"companies\":[],\"rowVersion\":0,\"__typename\":\"Order\",\"exportDeclarations\":[],\"senders\":[],\"selectedCell\":true},\"requestDate\":null,\"requestNumber\":\"123AM\",\"createdDateUtc\":null,\"inEdit\":true}'"
+      },
+      "response": []
+    },
+    {
+      "name": "Удалить КИЗ",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json, text/plain, */*"
+          },
+          {
+            "key": "accept-language",
+            "value": "ru,en;q=0.9"
+          },
+          {
+            "key": "locale",
+            "value": "ru"
+          },
+          {
+            "key": "origin",
+            "value": "https://test.cupra.io"
+          },
+          {
+            "key": "priority",
+            "value": "u=1, i"
+          },
+          {
+            "key": "referer",
+            "value": "https://test.cupra.io/ru/kiz"
+          },
+          {
+            "key": "sec-ch-ua",
+            "value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\""
+          },
+          {
+            "key": "sec-ch-ua-mobile",
+            "value": "?0"
+          },
+          {
+            "key": "sec-ch-ua-platform",
+            "value": "\"Windows\""
+          },
+          {
+            "key": "sec-fetch-dest",
+            "value": "empty"
+          },
+          {
+            "key": "sec-fetch-mode",
+            "value": "cors"
+          },
+          {
+            "key": "sec-fetch-site",
+            "value": "same-origin"
+          },
+          {
+            "key": "user-agent",
+            "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36"
+          },
+          {
+            "key": "Cookie",
+            "value": "JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgxMDYxOTAsImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.8csxwRnxj5G_--LCy9Vu6OCGa4vkpwjOXFvVUNkDDA0"
+          }
+        ],
+        "url": {
+          "raw": "https://test.cupra.io/api/orders/v1/ControlMarks/{{KONTROLMARKSID}}",
+          "protocol": "https",
+          "host": [
+            "test",
+            "cupra",
+            "io"
+          ],
+          "path": [
+            "api",
+            "orders",
+            "v1",
+            "ControlMarks",
+            "{{KONTROLMARKSID}}"
+          ]
+        },
+        "description": "Generated from cURL: curl 'https://test.cupra.io/api/orders/v1/ControlMarks/00130000-ac14-0242-5877-08ddf5b1e918' \\\r\n  -X 'DELETE' \\\r\n  -H 'accept: application/json, text/plain, */*' \\\r\n  -H 'accept-language: ru,en;q=0.9' \\\r\n  -b 'JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgxMDYxOTAsImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.8csxwRnxj5G_--LCy9Vu6OCGa4vkpwjOXFvVUNkDDA0' \\\r\n  -H 'locale: ru' \\\r\n  -H 'origin: https://test.cupra.io' \\\r\n  -H 'priority: u=1, i' \\\r\n  -H 'referer: https://test.cupra.io/ru/kiz' \\\r\n  -H 'sec-ch-ua: \"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'sec-fetch-dest: empty' \\\r\n  -H 'sec-fetch-mode: cors' \\\r\n  -H 'sec-fetch-site: same-origin' \\\r\n  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36'"
+      },
+      "response": []
+    },
+    {
+      "name": "Создать Тр. накладную (с заполнением обязательных полей)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "let response = pm.response.json();\r",
+              "\r",
+              "pm.environment.set(\"TRANSITBILLSID\", response.id);\r",
+              "\r",
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json, text/plain, */*"
+          },
+          {
+            "key": "accept-language",
+            "value": "ru,en;q=0.9"
+          },
+          {
+            "key": "content-type",
+            "value": "application/json"
+          },
+          {
+            "key": "locale",
+            "value": "ru"
+          },
+          {
+            "key": "origin",
+            "value": "https://test.cupra.io"
+          },
+          {
+            "key": "priority",
+            "value": "u=1, i"
+          },
+          {
+            "key": "referer",
+            "value": "https://test.cupra.io/ru/transit-bills"
+          },
+          {
+            "key": "sec-ch-ua",
+            "value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\""
+          },
+          {
+            "key": "sec-ch-ua-mobile",
+            "value": "?0"
+          },
+          {
+            "key": "sec-ch-ua-platform",
+            "value": "\"Windows\""
+          },
+          {
+            "key": "sec-fetch-dest",
+            "value": "empty"
+          },
+          {
+            "key": "sec-fetch-mode",
+            "value": "cors"
+          },
+          {
+            "key": "sec-fetch-site",
+            "value": "same-origin"
+          },
+          {
+            "key": "user-agent",
+            "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36"
+          },
+          {
+            "key": "Cookie",
+            "value": "JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgxMDYxOTAsImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.8csxwRnxj5G_--LCy9Vu6OCGa4vkpwjOXFvVUNkDDA0"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"order\": {\r\n        \"id\": \"ccf5225b-26f4-42c4-bb94-127175969b57\",\r\n        \"number\": \"12378\",\r\n        \"client\": {\r\n            \"id\": \"b6600000-5d86-0015-0323-08dc92053b6f\",\r\n            \"nic\": \"9640_3435_Климанская-25\",\r\n            \"partnerWarehouses\": [],\r\n            \"__typename\": \"Client\",\r\n            \"clientCompanies\": [\r\n                {\r\n                    \"id\": \"00030000-ac12-0242-a34d-08dd14ffc8ac\",\r\n                    \"inn\": \"666700091030\",\r\n                    \"name\": \"ИП Климанская Елена Сергеевна\",\r\n                    \"__typename\": \"ClientCompany\"\r\n                }\r\n            ]\r\n        },\r\n        \"cargoSlotsCount\": 0,\r\n        \"weightCargoSlots\": 0,\r\n        \"status\": {\r\n            \"id\": \"NEW\",\r\n            \"nameRu\": \"Новая заявка\",\r\n            \"nameEn\": \"New order\",\r\n            \"__typename\": \"OrderStatusDto\"\r\n        },\r\n        \"createdDate\": \"2025-09-15\",\r\n        \"wayBills\": [],\r\n        \"packingStatus\": {\r\n            \"id\": \"NO_INVOICE\",\r\n            \"nameEn\": \"No Invoice\",\r\n            \"nameRu\": \"Нет инвойса\",\r\n            \"__typename\": \"PackingStatusDto\"\r\n        },\r\n        \"formlableStatus\": null,\r\n        \"tags\": [\r\n            {\r\n                \"name\": \"TARIF UPDATE\",\r\n                \"__typename\": \"Tag\"\r\n            }\r\n        ],\r\n        \"marks\": null,\r\n        \"totalInvoicePrice\": 0,\r\n        \"warehouseMarking\": null,\r\n        \"nettoBrutto\": 0.18,\r\n        \"citesCount\": 0,\r\n        \"controlMarkFursCount\": null,\r\n        \"controlMarkSheepskinsCount\": null,\r\n        \"companies\": [],\r\n        \"rowVersion\": 0,\r\n        \"__typename\": \"Order\",\r\n        \"exportDeclarations\": [],\r\n        \"senders\": [],\r\n        \"selectedCell\": true\r\n    },\r\n    \"requestDate\": null,\r\n    \"number\": \"123AM\",\r\n    \"createdDateUtc\": null,\r\n    \"inEdit\": true\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://test.cupra.io/api/orders/v1/TransitBills/",
+          "protocol": "https",
+          "host": [
+            "test",
+            "cupra",
+            "io"
+          ],
+          "path": [
+            "api",
+            "orders",
+            "v1",
+            "TransitBills",
+            ""
+          ]
+        },
+        "description": "Generated from cURL: curl 'https://test.cupra.io/api/orders/v1/TransitBills/' \\\r\n  -H 'accept: application/json, text/plain, */*' \\\r\n  -H 'accept-language: ru,en;q=0.9' \\\r\n  -H 'content-type: application/json' \\\r\n  -b 'JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgxMDYxOTAsImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.8csxwRnxj5G_--LCy9Vu6OCGa4vkpwjOXFvVUNkDDA0' \\\r\n  -H 'locale: ru' \\\r\n  -H 'origin: https://test.cupra.io' \\\r\n  -H 'priority: u=1, i' \\\r\n  -H 'referer: https://test.cupra.io/ru/transit-bills' \\\r\n  -H 'sec-ch-ua: \"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'sec-fetch-dest: empty' \\\r\n  -H 'sec-fetch-mode: cors' \\\r\n  -H 'sec-fetch-site: same-origin' \\\r\n  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36' \\\r\n  --data-raw '{\"order\":{\"id\":\"ccf5225b-26f4-42c4-bb94-127175969b57\",\"number\":\"12378\",\"client\":{\"id\":\"b6600000-5d86-0015-0323-08dc92053b6f\",\"nic\":\"9640_3435_Климанская-25\",\"partnerWarehouses\":[],\"__typename\":\"Client\",\"clientCompanies\":[{\"id\":\"00030000-ac12-0242-a34d-08dd14ffc8ac\",\"inn\":\"666700091030\",\"name\":\"ИП Климанская Елена Сергеевна\",\"__typename\":\"ClientCompany\"}]},\"cargoSlotsCount\":0,\"weightCargoSlots\":0,\"status\":{\"id\":\"NEW\",\"nameRu\":\"Новая заявка\",\"nameEn\":\"New order\",\"__typename\":\"OrderStatusDto\"},\"createdDate\":\"2025-09-15\",\"wayBills\":[],\"packingStatus\":{\"id\":\"NO_INVOICE\",\"nameEn\":\"No Invoice\",\"nameRu\":\"Нет инвойса\",\"__typename\":\"PackingStatusDto\"},\"formlableStatus\":null,\"tags\":[{\"name\":\"TARIF UPDATE\",\"__typename\":\"Tag\"}],\"marks\":null,\"totalInvoicePrice\":0,\"warehouseMarking\":null,\"nettoBrutto\":0.18,\"citesCount\":0,\"controlMarkFursCount\":null,\"controlMarkSheepskinsCount\":null,\"companies\":[],\"rowVersion\":0,\"__typename\":\"Order\",\"exportDeclarations\":[],\"senders\":[],\"selectedCell\":true},\"requestDate\":null,\"number\":\"123AM\",\"createdDateUtc\":null,\"inEdit\":true}'"
+      },
+      "response": []
+    },
+    {
+      "name": "Удалить Тр. накладную",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json, text/plain, */*"
+          },
+          {
+            "key": "accept-language",
+            "value": "ru,en;q=0.9"
+          },
+          {
+            "key": "locale",
+            "value": "ru"
+          },
+          {
+            "key": "origin",
+            "value": "https://test.cupra.io"
+          },
+          {
+            "key": "priority",
+            "value": "u=1, i"
+          },
+          {
+            "key": "referer",
+            "value": "https://test.cupra.io/ru/transit-bills"
+          },
+          {
+            "key": "sec-ch-ua",
+            "value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\""
+          },
+          {
+            "key": "sec-ch-ua-mobile",
+            "value": "?0"
+          },
+          {
+            "key": "sec-ch-ua-platform",
+            "value": "\"Windows\""
+          },
+          {
+            "key": "sec-fetch-dest",
+            "value": "empty"
+          },
+          {
+            "key": "sec-fetch-mode",
+            "value": "cors"
+          },
+          {
+            "key": "sec-fetch-site",
+            "value": "same-origin"
+          },
+          {
+            "key": "user-agent",
+            "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36"
+          },
+          {
+            "key": "Cookie",
+            "value": "JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgxMDYxOTAsImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.8csxwRnxj5G_--LCy9Vu6OCGa4vkpwjOXFvVUNkDDA0"
+          }
+        ],
+        "url": {
+          "raw": "https://test.cupra.io/api/orders/v1/TransitBills/{{TRANSITBILLSID}}",
+          "protocol": "https",
+          "host": [
+            "test",
+            "cupra",
+            "io"
+          ],
+          "path": [
+            "api",
+            "orders",
+            "v1",
+            "TransitBills",
+            "{{TRANSITBILLSID}}"
+          ]
+        },
+        "description": "Generated from cURL: curl 'https://test.cupra.io/api/orders/v1/TransitBills/00130000-ac14-0242-2c35-08ddf5b31999' \\\r\n  -X 'DELETE' \\\r\n  -H 'accept: application/json, text/plain, */*' \\\r\n  -H 'accept-language: ru,en;q=0.9' \\\r\n  -b 'JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgxMDYxOTAsImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.8csxwRnxj5G_--LCy9Vu6OCGa4vkpwjOXFvVUNkDDA0' \\\r\n  -H 'locale: ru' \\\r\n  -H 'origin: https://test.cupra.io' \\\r\n  -H 'priority: u=1, i' \\\r\n  -H 'referer: https://test.cupra.io/ru/transit-bills' \\\r\n  -H 'sec-ch-ua: \"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'sec-fetch-dest: empty' \\\r\n  -H 'sec-fetch-mode: cors' \\\r\n  -H 'sec-fetch-site: same-origin' \\\r\n  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36'"
+      },
+      "response": []
+    }
+  ]
+}

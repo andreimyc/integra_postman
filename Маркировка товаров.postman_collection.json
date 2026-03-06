@@ -1,0 +1,287 @@
+{
+  "info": {
+    "_postman_id": "da133b18-ee79-4e8a-a9ed-e25d64fd12ef",
+    "name": "Маркировка товаров",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "32293957",
+    "_collection_link": "https://go.postman.co/collection/32293957-da133b18-ee79-4e8a-a9ed-e25d64fd12ef?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Получить список заказов на формирование д.кодов",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{TOKEN}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://{{URL}}/api/orders/v1/Orders/generate-longmark",
+          "protocol": "https",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "api",
+            "orders",
+            "v1",
+            "Orders",
+            "generate-longmark"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Формирование д.кодов (отобразить/исключить из списка) custom light 12647",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{TOKEN}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"orderIds\": [\r\n    \"c04c8114-264e-4d74-bea1-f9d57a56d988\",\r\n    \"a63faa5c-707d-4a93-8228-56418fb1dd45\"\r\n  ],\r\n  \"generate\": true\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://{{URL}}/api/orders/v1/Orders/generate-longmark",
+          "protocol": "https",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "api",
+            "orders",
+            "v1",
+            "Orders",
+            "generate-longmark"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Записать д.коды в заказ custom light 12647",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{TOKEN}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "[\r\n    \"MDEwNDY2MDYxODMyMzczOTIxNTRZelVfVGo1dnRETzkxRUUxMTkyUWVkYk1CRWlIeExxUU0rbjdKbzF3RlB1T1FPYXduR0d1K2c0TUFpdmxSVT0=\",\r\n    \"MDEwNDY2MDYxODMyMzczOTIxNUIrRDJFQ1JqREMwcTkxRUUxMTkyZ1J6TXFrUG92ZmRISUxJZnc3eE96NUtyT0RIRkNqOTdjek52b2JBQUZrVT0=\",\r\n    \"MDEwNDY2MDYxODMyMzczOTIxNWNldUZ0ZVBtTTZRLjkxRUUxMTkyUzZPcTJVbWFMdXZYc1JLNlI3blFQMW1QaW1xWjFxMXhadmplOUNoaU13MD0=\",\r\n    \"MDEwNDY2MDYxODMyMzczOTIxNWQnclpRVFNJNG8ndjkxRUUxMTkyaHF2SURGTFp0UHZhSnorMktUUXpkMjAxa1RLSlh0QzRZU0xDZ3pQbTd6cz0=\",\r\n    \"MDEwNDY2MDYxODMyMzczOTIxNUVsRmtKP2tldHpqWjkxRUUxMTkyRkVMWTIwYjJQYUo3eDVMMjczMmZxVGFSMHNFaS9uajhmeVNrZ1RteXh6dz0=\",\r\n    \"MDEwNDY2MDYxODMyMzczOTIxNWppY1UlRzI9YS5ZSjkxRUUxMTkyV1hmVUppZFR0b2dSWnJtbHpqemVrZmR6NndycjRhdHRTVi9FbVZtU3lacz0=\",\r\n    \"MDEwNDY2MDYxODMyMzczOTIxNVU6K2IwPU1hc29QVDkxRUUxMTkyd1JpdE1CT3RyWDRqeXIwZ0xqUHpiUjk4Zllmd0VSUFdRemEzVzJHWWNSMD0=\",\r\n    \"MDEwNDY2MDYxODMyMzc0NjIxNWFqKWM/d0ZmSFA4KzkxRUUxMTkydXdFYXNjNnV2OHN1VXAyOTdIVTFJWmpNcG9QWng4VUI4a09rek9aUkZQWT0=\",\r\n    \"MDEwNDY2MDYxODMyMzc0NjIxNWpYQUhaZXcqQS1yKDkxRUUxMTkyNXZNYVNxdkEwRXZ5UnVCdkgrNFIzWEZQUkFSa08rV1hhbXNvSlJOYU5BWT0=\",\r\n    \"MDEwNDY2MDYxODMyMzc0NjIxNXFFdzMqUFhPbilIUDkxRUUxMTkyTjBqQ0FQMHB1clJvbVcveHowcTYxc0pRSmkrUkxNTkhBNWgwdGswaGZjdz0=\",\r\n    \"MDEwNDY2MDYxODMyMzc1MzIxNTw+a2tPWEdWZVhJWjkxRUUxMTkyZDRiMW1aRnFsYXhUQVloQ0lIczF5RkhOSi9HRThqT2MxTlE3YldncFlzYz0=\",\r\n    \"MDEwNDY2MDYxODMyMzc1MzIxNWREWHNVd1RZUUEzLDkxRUUxMTkycldDWnR5WTI4QWIzWlU3V3JKVXJvVFA3VGZiRWdQbnhvVVZoSDZqL2tqST0=\",\r\n    \"MDEwNDY2MDYxODMyMzc1MzIxNVFkWm9uUGVhOz1mUzkxRUUxMTkyUXNiVlpnaXZISG5wM0Ywb0tMU2xUMkp6eUF2c3hHWU0rek9iQUdoejk5OD0=\",\r\n    \"MDEwNDY2MDYxODMyMzg3NjIxNTNTRkthdG9jbkI5TzkxRUUxMTkycGFDMTFodVdMdkorVjRRYkNCd3M2ZnVFeHJra0dYb0sxRnMzWG05eU9kaz0=\",\r\n    \"MDEwNDY2MDYxODMyMzg3NjIxNUNROE9FV2wzNXRHdDkxRUUxMTkySXJiMFZhTVVTOXVzZy9IRndKcDFQbU5ONG8xSjJweHRvVkVWS1Q2NmdaYz0=\",\r\n    \"MDEwNDY2MDYxODMyMzg3NjIxNXFTbldMQiU+MGdjRDkxRUUxMTkydTVXSU0rcm9kUHZQcjJaNEpzLzEvYlFCYjZ0Q2xFbTJaVFR0Mnc2N1BYdz0=\",\r\n    \"MDEwNDY2MDYxODMyMzc2MDIxNS1GRkRCcW5ucVNNNTkxRUUxMTkyd2N5MWgrTjBRZ2Mzb0N4dGFXUjBKcTJObkIzSGR1MXo5R1BTdEY0TkNYWT0=\",\r\n    \"MDEwNDY2MDYxODMyMzc2MDIxNUZQWEZLVmdhRGJWYzkxRUUxMTkyektUdG8wZVZOVVpWWkFiZ2lUL0EvZi9BVEVocWtEdWpOZDI3SlQ5VEJJbz0=\",\r\n    \"MDEwNDY2MDYxODMyMzc2MDIxNWpsVVdnYS4wZzQ5YjkxRUUxMTkyM1ljS2llWm4zY21SbXpYaXBZVkYxbGdINEJ2TEpFaUszZyt5WWNDclJoQT0=\",\r\n    \"MDEwNDY2MDYxODMyMzc2MDIxNU9RY1hGcTVKJitVUTkxRUUxMTkyQVJ1cnBFcnplQTBHSzdGV0dYNFVoNlN0WXFCOG9LdTdiVTRtR1VCK0UvYz0=\",\r\n    \"MDEwNDY2MDYxODMyMzc3NzIxNUNGV1NWdTF1RHMlaTkxRUUxMTkyc0E0cE9OS2IzRHA1STRRcTUzVXJubkh0OTdENVp6eVFma2JVSzFlTndndz0=\",\r\n    \"MDEwNDY2MDYxODMyMzc3NzIxNUlYOydzSC5xY3FuITkxRUUxMTkycVQvamwxRUFOdkZQWFNPaWZUZ2hLclZ5NnVNVGFaRE00cEhGSEVOaTZRRT0=\",\r\n    \"MDEwNDY2MDYxODMyMzc3NzIxNWxqaUYydmlzJj87ZjkxRUUxMTkyd3hyQzBEVG40Ym41azg4VjVyK0tPQ1d5S2tPcXdVNFhVc2hPTUhRUk1zWT0=\",\r\n    \"MDEwNDY2MDYxODMyMzc3NzIxNXkuUFMrSj0lZFdsRTkxRUUxMTkySTVhdEx0cGZOSEtKUFJVcVdKR1BkYk1YUzJrcVo4dUdqMmlhanBORVE1Zz0=\",\r\n    \"MDEwNDY2MDYxODMyMzc3NzIxNVk9bGhCSlU0YV9iRjkxRUUxMTkyekFUV2FRVkhHWlV6WmU1UG1Ka1pWSlZncExQNWI4cjRUTDI2T0d4NVJzRT0=\",\r\n    \"MDEwNDY2MDYxODMyMzcyMjIxNWpKaGp0ZkpYaWp0OTFFRTExOTJ1Sm5xWjlXMVpHZjhhYThVNFZwcDY0dGw4UW5YTkFpZXJrM0pJUy9GWFNrPQ==\",\r\n    \"MDEwNDY2MDYxODMyMzcyMjIxNWonL1BKLGpRMmFqLDkxRUUxMTkyb0hVUUxNeHIyUnVEQ2tQQ3B2OTVBMkNVUjN5MDRsd21NUjdmSGU4cHl4dz0=\",\r\n    \"MDEwNDY2MDYxODMyMzcyMjIxNWtLTlpzTWNWWW94QjkxRUUxMTkySzVpUnJMZE1LTXBhd012RTRLRnB6Mnd4KzdjYkkzZWJVeGQ3OGhTcTNMbz0=\",\r\n    \"MDEwNDY2MDYxODMyMzcyMjIxNW9jeHE4X01zaUJDYzkxRUUxMTkydG1VVUhmWTB4cXdRSXBnWkZ4OTY5djdRckZTWWxSanZlVmI0d2dVS2pzST0=\",\r\n    \"MDEwNDY2MDYxODMyMzcyMjIxNVJKUjBKYm9jQnBrRDkxRUUxMTkyY21Ub2x4S0xzNVl3a1RyYmpLNXZGYzJ1T1dwOWpyczNUTStET2N6aU9sTT0=\",\r\n    \"MDEwNDY2MDYxODMyMzcyMjIxNVdTST1iam5zLl9EYTkxRUUxMTkycFdNUCtGYm84cG9ZcFNGMkRGQldhdjVpRnF6NWlWZXdFREoyNjBWaDRVbz0=\",\r\n    \"MDEwNDY2MDYxODMyMzcyMjIxNXllL1VGZ0gxP09NSjkxRUUxMTkyc1M0WnFQRndBYVRrcEJxRiticDB3ZW1JcGplSTBiYWdkSVdUQkFoc1ltdz0=\",\r\n    \"MDEwNDY2MDYxODMyMzcyMjIxNXlpKFJGeF9rZnJUMDkxRUUxMTkyRWpVVzg3clhkckRIYWlGT1d3cHpxWFRxbkhMNHBhenBRMGcyUWFZdStQZz0=\",\r\n    \"MDEwNDY2MDYxODMyMzcyMjIxNVplN1BEczc5NXZvPTkxRUUxMTkydnVueVZmYXNqTTBYaG9NSFI4bUR0WG43NnlpSXNybml5SEhVbmlDVlhYQT0=\",\r\n    \"MDEwNDY2MDYxODMyMzc4NDIxNTlLPjpnTHNKLE5wOTFFRTExOTJEbjRXWFQ3WHByb015YUdmcnVmYkV0TEpYUnZFWEdCR3ltVnFlQ2Q0Y29jPQ==\",\r\n    \"MDEwNDY2MDYxODMyMzc4NDIxNUFoTFJmWi5QVitxZDkxRUUxMTkyOEZWZGkwSWRrTUt0N0xDV1Z0VUVsZkpLQlpaeHFPNFg1blZBSTMrS1I2az0=\",\r\n    \"MDEwNDY2MDYxODMyMzc5MTIxNWJISVhCa19CVmsqcTkxRUUxMTkyTjBQZUVQYjY4WU5QdHVjTGY4U1B4Rm1wUFQxc1cwcDhoNE45cjI3SzhOVT0=\",\r\n    \"MDEwNDY2MDYxODMyMzc5MTIxNUZUJ1dCITElTDU7dTkxRUUxMTkyczJDb3VzTjFJQVY0UFJ3Wk5HZGxmOVNGeEMxWW5PcytQdk53aXhybFVhaz0=\",\r\n    \"MDEwNDY2MDYxODMyMzc5MTIxNUdZZ2ZhdFJGbzJiVDkxRUUxMTkyN0R1bUE0U0NVRW5ob0Z0S0Y4NmFHOHJTcUswd1J0ZEVyVndWbnhCRUZ1TT0=\",\r\n    \"MDEwNDY2MDYxODMyMzc5MTIxNUliKGx2S2lIdyo5MUVFMTE5MjJhTENCb0tGOS8wd3MreUZaYnV6Ym14Y0dwanhsTHNvbWVvc3BPMmgxQ2s9\",\r\n    \"MDEwNDY2MDYxODMyMzc5MTIxNW1qSU5RZ1pYTUwsITkxRUUxMTkyckp1azBQemZZRGo0bjVBZHdmQlRScG8wWnVWNUJUOXlEQWc1TEZ1R3l3VT0=\",\r\n    \"MDEwNDY2MDYxODMyMzc5MTIxNW13V2pxa3NXTmcwbzkxRUUxMTkyZkJCdkxiTUJhTjBySFFXVitMQnkvQmtmdzhObmJJMVVSc0pkTFp5UkRDaz0=\",\r\n    \"MDEwNDY2MDYxODMyMzc5MTIxNXFxRUhXUUhLSVA6VTkxRUUxMTkyRUZOQXh5REN1dzNwRjBKWlQxMWd1bDhENE12bTVUQVlSYkw1SkdqNUVpZz0=\",\r\n    \"MDEwNDY2MDYxODMyMzc5MTIxNVV6Zz9JWnF2aSFNaTkxRUUxMTkyVDdNczVyQSswbjdWOFNsd3hGcERtOUN4Nk04d3dncmhnTnJqRWhtT0JDMD0=\",\r\n    \"MDEwNDY2MDYxODMyMzc5MTIxNVg2KUg+Mz5tPzhnXzkxRUUxMTkyK2luK2VYeHdraDRPbjJkWTlDRjZnQ3FPdTJKZmhtcUMwRzQ0R1ZBc25Rcz0=\",\r\n    \"MDEwNDY2MDYxODMyMzgwNzIxNWJsSVdJWWJKVmhyaDkxRUUxMTkyKzArL28yWW8yK0NFeUhmZXZueGV1RG5oVXZxbXBhc3lDSTJQdTV5cElKTT0=\",\r\n    \"MDEwNDY2MDYxODMyMzgwNzIxNUpWdmNqWDZvSEVoWTkxRUUxMTkyZ2NLNDQ3RFdsd1I5bG5PSzQ0ZzljMGFhSVR5aDl4Y3J4R0JNUkRRei90cz0=\",\r\n    \"MDEwNDY2MDYxODMyMzgwNzIxNWt6VmZINUFFKkwmNTkxRUUxMTkyZWdCYzc4Y1d5UURmN2NncmNNWVdUUkp3enhmOGRjMnk2RVU4S1ZNWkFsMD0=\",\r\n    \"MDEwNDY2MDYxODMyMzgxNDIxNWFnVjMqY1AlU3FwQTkxRUUxMTkyRWh2OVBtemVEci93WDJINWJUSFZFcmY3cExZSzRGdFIxZ0tCZFdVUStLWT0=\",\r\n    \"MDEwNDY2MDYxODMyMzgxNDIxNWFwbVo2VWRjVihrNzkxRUUxMTkyQzdxLzFrak1HWTJrUER0cXdBODkwL29ESFhESWlXMVZOdEdpVnhLYUZJbz0=\",\r\n    \"MDEwNDY2MDYxODMyMzgxNDIxNUN2YWcyPUdzaXFCRTkxRUUxMTkyQ1JDSFhvWVplckNsczB2VGUxTVJnT1V4WFBqai9uckhnRmZ2UUZuallhND0=\",\r\n    \"MDEwNDY2MDYxODMyMzgxNDIxNWgoVlJsTHhZO04nbjkxRUUxMTkydUt6WXJqWlgzem5iaU5tSWliZmh5TGF6ZlRnUG5ta0pLeGRmYXNvLzFhQT0=\",\r\n    \"MDEwNDY2MDYxODMyMzgxNDIxNWhXazZRUmZsLHVobzkxRUUxMTkyeDBENzB3dTRKMm9JQnVMQ2xqMGhSc2JSTSt0cExFbXR6SGVJUDk5M2U5MD0=\",\r\n    \"MDEwNDY2MDYxODMyMzgxNDIxNUtnekxQRD5qMzc6VjkxRUUxMTkySG5INWkvOEEwZTJzTytDTnkvY21lb3ZkUkdjQWdNWnA2K0xIcmFxZWozYz0=\",\r\n    \"MDEwNDY2MDYxODMyMzgxNDIxNVdWZnprYUk2UyZsczkxRUUxMTkybUZJNDc1SUt0bkN3QjhjU256N0h3VStTdDBtSXhVY1Nmd1pvU1FiaU5Lbz0=\",\r\n    \"MDEwNDY2MDYxODMyMzg4MzIxNW11Ji9oejBXckJMLjkxRUUxMTkyZlF4Y1lsNjF6ZEVkYjhFeWZvZ1k0Q2lON3VSR3hnbTI0d2UrSm9pVnViND0=\",\r\n    \"MDEwNDY2MDYxODMyMzg4MzIxNXFxZllsNTlNJ1Z1QjkxRUUxMTkyVUc1TSt6L1Z4eWVHS2VpSGRIZm5FdnZIWmdOTEhMVXRSa3NiTUtnb01Xcz0=\",\r\n    \"MDEwNDY2MDYxODMyMzg4MzIxNXQ5REt1dVN0RTU5MUVFMTE5MmFNdzA1d1MrODBDTE9acUxLd0VjSVVsVHpXMnIzbW5kWHFZcmxQWktjWHM9\",\r\n    \"MDEwNDY2MDYxODMyMzgyMTIxNStSei14YlhXY0dYUzkxRUUxMTkya0M2MFg0MGcyMFo0RVVWdDlQcnZOMmF3VE05T2k3dHBMS3hsNTVTM0djTT0=\",\r\n    \"MDEwNDY2MDYxODMyMzgyMTIxNTBIT000cWVRZ1gpKzkxRUUxMTkyVTBOenorWVZWSm9HREIyMWZFcGJyWkpPa1orMnVqN25PS0IyYUwyVm9NUT0=\",\r\n    \"MDEwNDY2MDYxODMyMzgyMTIxNUdlMHhlY1dfR1ZWcTkxRUUxMTkybGVDWWlOd21uU0NaVzBxYk94bUNaa2lFSWtmdWkxMmg0d3hubSs4TWNpbz0=\",\r\n    \"MDEwNDY2MDYxODMyMzgyMTIxNWhFbkkyTVFycndIODkxRUUxMTkyQ1gwR1Brc1NqV0FTcFhQSnJEeUpxQWUrQ0FHVFZ3SUFrYW5pOXR0dHM1OD0=\",\r\n    \"MDEwNDY2MDYxODMyMzgyMTIxNW9yRUtER2c8PXNFbzkxRUUxMTkyV3VkaFNFUXI3UE9ReEkxVWl6TjRTQm93MTBESEE4R3NQSHdsWHNUWnpSYz0=\",\r\n    \"MDEwNDY2MDYxODMyMzgyMTIxNXVwPk1pOnJFLVonSjkxRUUxMTkyWHpsL1N1bUlmckFvalFLeklER0tqeVRLYlUyQURXdVVjWnJ4dzRWTVhwaz0=\",\r\n    \"MDEwNDY2MDYxODMyMzgyMTIxNVc9cDRNbFRnTignSzkxRUUxMTkyWXhhS1g3YWtxY2dKMWRKbWIxb0RiOENMMU5MRkVhTkZNUmcwblBTZThiaz0=\",\r\n    \"MDEwNDY2MDYxODMyMzgyMTIxNVdHTWJmTlo1JWkvSzkxRUUxMTkyd1E0MVpSZ2diWk9EQkZFU21qUi9BOTRZUk41NnlpZWl4YjNjejFrSEMzRT0=\",\r\n    \"MDEwNDY2MDYxODMyMzgzODIxNS0oVVJPakNnZVQldDkxRUUxMTkybVhhSTh1T0ZyV0l6VzRjUDlEYklXOEpRRmpDNHgxcFUwL0dSckhwdnh5ST0=\",\r\n    \"MDEwNDY2MDYxODMyMzgzODIxNTlnRW02cHByOTBWOTFFRTExOTJLV3grQ1UrTnJrZVh1SmNqN2t0R1d5ZUJGZGNpQ2dDTy96ai9vbHMxK3pJPQ==\",\r\n    \"MDEwNDY2MDYxODMyMzgzODIxNU8mIVFUSnNmV2NoczkxRUUxMTkyRC9QYmVYaDNUTGt6YVlaUnFlenRENzI3MENBa1N1SUVVcERZcGljbFZvUT0=\",\r\n    \"MDEwNDY2MDYxODMyMzg0NTIxNSUxa3VzdTRRQmE6bDkxRUUxMTkyQWt5R3FEd0pDZjBrcDRtc3E0TmtvZGQ5ZzdlZUk3ZFRIdVBHZDhDM0Iwcz0=\",\r\n    \"MDEwNDY2MDYxODMyMzg0NTIxNSpSc3hPRW5STmVYYzkxRUUxMTkyT2lseC9WeGwzT0FkRTF6ZjBXU0NSdFBpU2djcXV4Z0NDbE1ZSUduMDU5UT0=\",\r\n    \"MDEwNDY2MDYxODMyMzg0NTIxNV9ZRlRUOWFyLycuOTFFRTExOTJ6N2FDaTJmZ25oRXg1Y2NjTnFTUEIrRnNnQVNsWnZQaXhhUkZ1MjdPb01jPQ==\",\r\n    \"MDEwNDY2MDYxODMyMzg0NTIxNTFEKVVaayhjOG5QYjkxRUUxMTkyZm5RMFRUTkxIaHFpYWU0dldQUVNuWnRuMC9jWE10SnBQOEtYRDNxK2EwST0=\",\r\n    \"MDEwNDY2MDYxODMyMzg0NTIxNWp6RE4/SmJIQXh5ITkxRUUxMTkyYkltazBYMTlSNDVTWWNHNDNhSjZoSmh2Mm00aDJTOTNYZTVBeHNkaTR2MD0=\",\r\n    \"MDEwNDY2MDYxODMyMzg0NTIxNWxQVmRSN1cvWWZYMjkxRUUxMTkyYWFIb2k3OFc3T2tiZE5oYlVsMG9wVWFSRi9JT2xJc0RRd0d6Ti8rS3VZYz0=\",\r\n    \"MDEwNDY2MDYxODMyMzg1MjIxNWdnM0w3bGZyRGpxWjkxRUUxMTkyMXVidzAvMHNUSVNJcjl3NkJHV3ZyTzVrSWZGQzV5ODFlRlVzek91NmhTMD0=\",\r\n    \"MDEwNDY2MDYxODMyMzg1MjIxNVJRKktvK0RwTm9sMDkxRUUxMTkyMng1aEczcGFlRy9ldzlDYXhBV0RJa2hJZEg4VHBHWDZId25NZjBIS3JDZz0=\",\r\n    \"MDEwNDY2MDYxODMyMzg1MjIxNVlpbmRVNEV1ZGJtSDkxRUUxMTkyb3p4bkRSVDRCeGJlVFRlR3FIemhLU3c5ZVdQNjZqb2JTT1lLSkNhbTlsMD0=\",\r\n    \"MDEwNDY2MDYxODMyMzg1MjIxNVpyRkYueWZpVVF6YTkxRUUxMTkyK1Y3eGtWU2R6YThxbGN5QTZCRUVtcHZoZUMraTVLc2o3ZHg2Q2J3R2JwND0=\",\r\n    \"MDEwNDY2MDYxODMyMzg2OTIxNSpQZ09sbWRpZC1oOTFFRTExOTJkZ1E1YkR4WlhnWkw4M0Y3ekEyQzFKcFVnVmI1eFJLRnNRTlh1aVVnMWZFPQ==\",\r\n    \"MDEwNDY2MDYxODMyMzg2OTIxNSxkV3FpT01FUUo+Zh05MUVFMTEdOTJXNEFPVjB6QkJ2RnJKcS80Ky9LSkwwREZ2NklkVzF0eWg2dG1kOEFFSitvPQ==\",\r\n    \"MDEwNDY2MDYxODMyMzg2OTIxNT1NcXJJOkQ0OWxLTB05MUVFMTEdOTJzVHBuTWdIZHhIVWNEY3llVXorc3V0WnVhSW5sMzdLWnYvU2hxbHFEbUxzPQ==\",\r\n    \"MDEwNDY2MDYxODMyMzg2OTIxNT5VIlBQeGJvMHBTdB05MUVFMTEdOTIweWE0Y3BvREllTDRFcndqbGFvbm9nUkdZSnVKMGprUFBIbWNvdnZBYm9NPQ==\",\r\n    \"MDEwNDY2MDYxODMyMzg2OTIxNTVPLEplYzlCMEgrbh05MUVFMTEdOTJxYU1UYTcwSER1c05TSDhFR09RSjRnV1grMzdaQ2tWOU9YQXhmaWJhMThFPQ==\",\r\n    \"MDEwNDY2MDYxODMyMzg2OTIxNVhGZkZ0S01rZFVvRB05MUVFMTEdOTJXQzBsaUU0aHo0QWN2SlRQczQwRy9kQUFLQnhHQVJDRGd4dCtWSFlhTkg0PQ==\",\r\n    \"MDEwNDY2MDYxODMyMzY5MjIxNSlrSlZoUnZJeGhYSR05MUVFMTEdOTJhWnQrK2ZLZnJDcW8yN1VWQk5tR2RoMTRFWFR3R0ZLbFV6aHZpUU5RNHA0PQ==\",\r\n    \"MDEwNDY2MDYxODMyMzcwODIxNUxIWEFkPURNeCcwLx05MUVFMTEdOTJsSDhNL2pQL0FRWVRLeVVPNEVUV2lFaGo2ODk2elRaRWVKQW44ODhnNlQ4PQ==\",\r\n    \"MDEwNDY2MDYxODMyMzcxNTIxNTRYY3FmZHYmJzdWSx05MUVFMTEdOTJaVy9RbEJ3aFpvQ0MrMjZ5YUdTeGRHaEU3Q1N2ZjZCcHhtYWJVa1g0OE9RPQ==\"\r\n]",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://{{URL}}/api/customs/api/Export1C/uploadLongMarks",
+          "protocol": "https",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "api",
+            "customs",
+            "api",
+            "Export1C",
+            "uploadLongMarks"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Удалить длинные коды custom light 12647",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{TOKEN}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "[\r\n    \"a5d66409-12c3-46f7-bab1-9ba893fcb340\",\r\n    \"8a28689d-ee7b-4b69-b5bd-d18176d75087\",\r\n    \"2cc1d94a-42f6-4174-8cfa-b674f81c0a87\",\r\n    \"38ee1978-285c-4043-b6b1-8c3047d5f54c\",\r\n    \"7f014025-b72e-484f-b7a7-a196b439c52c\",\r\n    \"a43601b3-f956-40af-b770-09ca61fcad2d\",\r\n    \"c9add757-2378-436b-b65c-3902f6032771\",\r\n    \"268b506d-de43-4681-b357-f39d7c2830a2\",\r\n    \"6a6f9737-3457-484c-8cba-92a8c15b23a6\",\r\n    \"3d942120-76e2-476e-9705-ece63fea0a08\",\r\n    \"f6fef496-96ec-474e-b685-61ec7af9c5ff\",\r\n    \"ff55f081-2dd8-4042-8df7-de565f4938c4\",\r\n    \"b3551159-bbbc-4dec-b1ba-bac91bf3ff03\",\r\n    \"b646bc33-3412-4dbe-a215-6700f29abfc9\",\r\n    \"bdd4809a-5204-4751-98b2-b7e54215d60a\",\r\n    \"e5418f26-c4b6-48b1-8af0-ccf7857764d5\",\r\n    \"49824a89-9e72-4839-b655-b621cf847c1e\",\r\n    \"100186bf-2388-4400-8a6d-a34b41bbf9ff\",\r\n    \"7d15295d-5c44-4221-a45b-d0cd58fd41a7\",\r\n    \"413c8b78-7948-4df7-b40f-5f62dffd7f6a\"\r\n]",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://{{URL}}/api/customs/packingItem/clearlongmarks",
+          "protocol": "https",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "api",
+            "customs",
+            "packingItem",
+            "clearlongmarks"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Формирование д.кодов (отобразить/исключить из списка) custom light 11841",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{TOKEN}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"orderIds\": [\r\n    \"1d901f18-a2a4-41b7-8fde-5456249ec939\"\r\n  ],\r\n  \"generate\": true\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://{{URL}}/api/orders/v1/Orders/generate-longmark",
+          "protocol": "https",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "api",
+            "orders",
+            "v1",
+            "Orders",
+            "generate-longmark"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Записать д.коды в заказ custom light 11841",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{TOKEN}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "[\r\n  \"MDEwNDY2MDYxODE1NTk3MjIxNStuK1c0d01iNiVrVB05MUVFMTEdOTJQbEJKUDlCQlJpSDRwL0p6UVdnWE9CSXNPUHhoZGd3dHVaVWlDdFpSTUxBPQ==\",\r\n  \"MDEwNDY2MDYxODE1NTk3MjIxNTJRbDlydkdWVHFLdB05MUVFMTEdOTJDNHBCcnk4ak9lZmp5RjhudGUvUndBN2VUcU90c0p1TGhxQldsd1M3T1NRPQ==\",\r\n  \"MDEwNDY2MDYxODE1NTk3MjIxNUw2MHRUd0t1aHkhQx05MUVFMTEdOTJNZ1JSWXl6VFVGQkRQcXIvVUJWS1FPeGc2aEFQSUVmWHFzbFVLQWtNdWpJPQ==\",\r\n  \"MDEwNDY2MDYxODE1NTk3MjIxNU84QWsmZ1BfSzpnTR05MUVFMTEdOTJrdW9za1hqZGJJWUpkcVM4ZVAxMEhSVU1BSlRCenNlb21QZW1MRSs5V25rPQ==\",\r\n  \"MDEwNDY2MDYxODE1NTk3MjIxNXEvRmFkby5Hek5ORx05MUVFMTEdOTJRTHJXQkUzSFFuZ3FneE1lVms1UkJFekNMTXY2My96SUR4Tll0alVaRHVZPQ==\",\r\n  \"MDEwNDY2MDYxODE1NTk3MjIxNXZQd1JjZ0Y9Yjx1Ph05MUVFMTEdOTJ3eVo5L3JWY0p1ZW5xQlQ2RlpZRUdXQjZkeVlFZklBd01KNFRIRndTSXRZPQ==\",\r\n  \"MDEwNDY2MDYxODE1NTk4OTIxNTBzKmtfUEk7T3JQch05MUVFMTEdOTJzSWRkcDBzcmFBaVM0NDhHdk9DbkMvT1c5bS92YVFaeEM5MlRGRGZWY3VZPQ==\",\r\n  \"MDEwNDY2MDYxODE1NTk4OTIxNVQmZG9YbC5hZ3ooUR05MUVFMTEdOTJjbytlSWE4UWtKYTh6M3pwZVJ1ZmhaNy9ySmRtd0V4b09hZEx5YUt4MCtZPQ==\",\r\n  \"MDEwNDY2MDYxODE1NTk5NjIxNWpCbmlWZC8hUk9ZSR05MUVFMTEdOTJXZUFYd0lucndTcXE4MkdBT2ZFOW4wcE5OWG9WNHh6NllBaGlTendlK1VZPQ==\",\r\n  \"MDEwNDY2MDYxODE1NTk5NjIxNUpkVHFYSmRQWTZSXx05MUVFMTEdOTJlejdTTEtyN2d5WEhZek9wQld1RVl1Z3FuZ3Vnb2tIRzhqcWc0KzltV1lZPQ==\",\r\n  \"MDEwNDY2MDYxODE1NjAwOTIxNTE2Wm5BKCFWVjU1eh05MUVFMTEdOTJiM3BYVDU4TGloaWlFN0xzaDBYRktDYWdFQlY4b3hoTm1xdndTZk1EMGhJPQ==\",\r\n  \"MDEwNDY2MDYxODE1NjAwOTIxNWMwbT5NYk9vY3NVTx05MUVFMTEdOTJmMkorSzFFeS9xaHE1anV3Z1J1Z0RTaUVwR2lRak1idTMwQXhZbFhtSEV3PQ==\",\r\n  \"MDEwNDY2MDYxODE1NjAxNjIxNSlKcS11OG9aOSphTR05MUVFMTEdOTJKS05wV0dGVU5DY0VQMlNaNkhTUGJSbW02VGcrV2xaTVp5bzV5ZEltT1M0PQ==\",\r\n  \"MDEwNDY2MDYxODE1NjAxNjIxNSlxKyVsRUprP1ZqdR05MUVFMTEdOTJyNTUzcDFzU0loVm9ERWRFenIwZVowWjNRek9vODdqQkFOK0lQMHh2dkJ3PQ==\",\r\n  \"MDEwNDY2MDYxODE1NjAxNjIxNXVSO0ZVN0dKZVNmRx05MUVFMTEdOTJvZUpnVmdDYS9QU1Z0ZUhUaVljdkVhY0pYb01vOUs2RFBWTTQzY2tkaWF3PQ==\",\r\n  \"MDEwNDY2MDYxODE1NjAxNjIxNVgtODNzZScteWZoch05MUVFMTEdOTJYcnNkK2QrVUhoTS9qb0VTMzRhWnloNk1oekJyYUt5U1FQYXJZelhKd3ZnPQ==\",\r\n  \"MDEwNDY2MDYxODE1NjAxNjIxNXo+b1RfbXBORDEsSB05MUVFMTEdOTJVRjhOcFhnQ09hVk51YVEwTlpMZXdqNGFJVTU1NlQwdlJSdHNQc1cwbCtnPQ==\",\r\n  \"MDEwNDY2MDYxODE1NjAyMzIxNWlncjhuSkNWIUcrPx05MUVFMTEdOTJ6UmlGMDlCL0VUc2p6UE1Rc0NRSlVxMGhsbHAzNU5EQ3NSSkx0ZW91UXlVPQ==\",\r\n  \"MDEwNDY2MDYxODE1NjAyMzIxNUprTVFXIWlPYzVPZB05MUVFMTEdOTJORmovQWlZQnk5VHhVMFdLMWUvM2F6bkg0dGZ3cE1JVEVqTFgwa0lvSnNNPQ==\",\r\n  \"MDEwNDY2MDYxODE1NjAzMDIxNTUsamR1J2giQjN5SR05MUVFMTEdOTJyZktZc1FSamJVQUlZZE81WHZ4THBQVWNxdmx1RDQvYWFNSGtFenBmcjJ3PQ==\"\r\n]",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://{{URL}}/api/customs/api/Export1C/uploadLongMarks",
+          "protocol": "https",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "api",
+            "customs",
+            "api",
+            "Export1C",
+            "uploadLongMarks"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Удалить длинные коды custom light 11841",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{TOKEN}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "[\r\n    \"205ebdd7-ce4f-404e-a15e-fe6d0170ba53\",\r\n    \"5d8dd56e-2054-49fd-a304-20f0727eb7b5\",\r\n    \"841a5476-c53c-42aa-a0d7-cf142edd764b\",\r\n    \"bf469b72-bc4e-43f4-9b13-3fe4dca6f139\",\r\n    \"f3396154-63f6-445f-83f7-47eef8c08d84\",\r\n    \"2652cdb2-0223-48b7-92e6-4e89b5e33e47\",\r\n    \"152660e0-918d-4491-903d-fa08c4523e2d\"\r\n]",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://{{URL}}/api/customs/packingItem/clearlongmarks",
+          "protocol": "https",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "api",
+            "customs",
+            "packingItem",
+            "clearlongmarks"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

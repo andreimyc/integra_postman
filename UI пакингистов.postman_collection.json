@@ -1,0 +1,1468 @@
+{
+  "info": {
+    "_postman_id": "dc4e6df7-4775-4a0c-b795-b1b6bd082960",
+    "name": "UI пакингистов",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "32293957",
+    "_collection_link": "https://go.postman.co/collection/32293957-dc4e6df7-4775-4a0c-b795-b1b6bd082960?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Крит путь UI пакингистов",
+      "item": [
+        {
+          "name": "Авторизация пользователя с правами",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let response = pm.response.json();\r",
+                  "\r",
+                  "pm.globals.set(\"TOKEN\", response.accessToken);\r",
+                  "pm.globals.set(\"TOKENTYPE\", response.tokenType);\r",
+                  "\r",
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"userName\": \"{{USER_NAME_IS_ROLE}}\",\r\n    \"password\": \"{{PASSWORD}}\",\r\n    \"type\": \"otp\",\r\n    \"useCookies\": true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://{{URL}}/api/identity/users/login",
+              "protocol": "https",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "api",
+                "identity",
+                "users",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Поиск пользователя \"Admin\" запись id",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let response = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Проверить, что userName = 'Admin'\", function () {\r",
+                  "    pm.expect(response.data.usersPaged.items[0].userName).to.eql(\"Admin\");\r",
+                  "});\r",
+                  "\r",
+                  "if (response.data.usersPaged.items[0].userName === \"Admin\") {\r",
+                  "    let userId = response.data.usersPaged.items[0].id;\r",
+                  "    pm.environment.set(\"USER_ID_IS_ROLE\", userId);\r",
+                  "    console.log(\"ID сохранён в переменную окружения:\", userId);\r",
+                  "} else {\r",
+                  "    console.warn(\"userName не равен 'Admin', переменная не сохранена\");\r",
+                  "}\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query getCreatedUsers($skip: Int, $take: Int, $where: UserModelFilterInput, $order: [UserModelSortInput!]) {\r\n  usersPaged(skip: $skip, take: $take, where: $where, order: $order) {\r\n    totalCount\r\n    items {\r\n      id\r\n      userName\r\n      fullName\r\n      email\r\n      telegramUserName\r\n      roles {\r\n        name\r\n        id\r\n        __typename\r\n      }\r\n      company {\r\n        id\r\n        nameEn\r\n        nameRu\r\n        __typename\r\n      }\r\n      client {\r\n        id\r\n        nic\r\n        __typename\r\n      }\r\n      isEnabled\r\n      __typename\r\n    }\r\n    __typename\r\n  }\r\n}",
+                "variables": "{\r\n  \"skip\": 0,\r\n  \"take\": 100,\r\n  \"where\": {\r\n    \"and\": [\r\n      {\r\n        \"or\": [\r\n          {\r\n            \"userName\": {\r\n              \"contains\": \"{{USER_NAME_IS_ROLE}}\"\r\n            }\r\n          }\r\n        ]\r\n      }\r\n    ]\r\n  },\r\n  \"order\": []\r\n}"
+              }
+            },
+            "url": {
+              "raw": "https://{{URL}}/api/identity/graphql",
+              "protocol": "https",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "api",
+                "identity",
+                "graphql"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Поиск пользователя \"TestAM\" запись id",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let response = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Проверить, что userName = 'TestAM'\", function () {\r",
+                  "    pm.expect(response.data.usersPaged.items[0].userName).to.eql(\"TestAM\");\r",
+                  "});\r",
+                  "\r",
+                  "if (response.data.usersPaged.items[0].userName === \"TestAM\") {\r",
+                  "    let userId = response.data.usersPaged.items[0].id;\r",
+                  "    pm.environment.set(\"USER_ID_NOT_ROLE\", userId);\r",
+                  "    console.log(\"ID сохранён в переменную окружения:\", userId);\r",
+                  "} else {\r",
+                  "    console.warn(\"userName не равен 'TestAM', переменная не сохранена\");\r",
+                  "}\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query getCreatedUsers($skip: Int, $take: Int, $where: UserModelFilterInput, $order: [UserModelSortInput!]) {\r\n  usersPaged(skip: $skip, take: $take, where: $where, order: $order) {\r\n    totalCount\r\n    items {\r\n      id\r\n      userName\r\n      fullName\r\n      email\r\n      telegramUserName\r\n      roles {\r\n        name\r\n        id\r\n        __typename\r\n      }\r\n      company {\r\n        id\r\n        nameEn\r\n        nameRu\r\n        __typename\r\n      }\r\n      client {\r\n        id\r\n        nic\r\n        __typename\r\n      }\r\n      isEnabled\r\n      __typename\r\n    }\r\n    __typename\r\n  }\r\n}",
+                "variables": "{\r\n  \"skip\": 0,\r\n  \"take\": 100,\r\n  \"where\": {\r\n    \"and\": [\r\n      {\r\n        \"or\": [\r\n          {\r\n            \"userName\": {\r\n              \"contains\": \"{{USER_NAME_NOT_ROLE}}\"\r\n            }\r\n          }\r\n        ]\r\n      }\r\n    ]\r\n  },\r\n  \"order\": []\r\n}"
+              }
+            },
+            "url": {
+              "raw": "https://{{URL}}/api/identity/graphql",
+              "protocol": "https",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "api",
+                "identity",
+                "graphql"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "[companiesPaged] Получить данные для поля \"Продавец\"",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let response = pm.response.json();\r",
+                  "\r",
+                  "let firstCompany = response.data.companiesPaged.items[0];\r",
+                  "\r",
+                  "pm.environment.set(\"COMPANY_ID\", firstCompany.id);\r",
+                  "pm.environment.set(\"COMPANY_EORI\", firstCompany.eori ?? \"null\");\r",
+                  "pm.environment.set(\"COMPANY_VAT\", firstCompany.vat);\r",
+                  "pm.environment.set(\"COMPANY_NAME\", firstCompany.name);\r",
+                  "pm.environment.set(\"COMPANY_COUNTRY_ALPHA2\", firstCompany.country.alpha2);\r",
+                  "pm.environment.set(\"COMPANY_COUNTRY_ID\", firstCompany.country.id);\r",
+                  "pm.environment.set(\"COMPANY_COUNTRY_NAME\", firstCompany.country.name);\r",
+                  "pm.environment.set(\"COMPANY_COUNTRY_TYPENAME\", firstCompany.country.__typename);\r",
+                  "\r",
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query getLegalEntities($where: CompanyDtoFilterInput, $order: [CompanyDtoSortInput!]) {\r\n  companiesPaged(where: $where, order: $order) {\r\n    items {\r\n      id\r\n      eori\r\n      vat\r\n      name\r\n      country {\r\n        alpha2: id\r\n        id\r\n        name\r\n        __typename\r\n      }\r\n      __typename\r\n    }\r\n    __typename\r\n  }\r\n}",
+                "variables": "{\r\n  \"where\": {\r\n    \"and\": [\r\n      {\r\n        \"isValid\": {\r\n          \"eq\": true\r\n        }\r\n      }\r\n    ]\r\n  }\r\n}"
+              }
+            },
+            "url": {
+              "raw": "https://{{URL}}/api/company-catalog/graphql",
+              "protocol": "https",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "api",
+                "company-catalog",
+                "graphql"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "[clients] Получить данные для поля \"Клиент\"",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let response = pm.response.json();\r",
+                  "\r",
+                  "let firstCompany = response.data.clients[0];\r",
+                  "\r",
+                  "pm.environment.set(\"CLIENT_NIC\", firstCompany.nic);\r",
+                  "pm.environment.set(\"CLIENT_ID\", firstCompany.id);\r",
+                  "pm.environment.set(\"CLIENT_TYPENAME\", firstCompany.__typename);\r",
+                  "\r",
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query getAllClients($where: ClientFilterInput, $order: [ClientSortInput!]) {\r\n  clients(where: $where, order: $order) {\r\n    nic\r\n    id\r\n    __typename\r\n  }\r\n}",
+                "variables": "{}"
+              }
+            },
+            "url": {
+              "raw": "https://{{URL}}/api/orders/graphql",
+              "protocol": "https",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "api",
+                "orders",
+                "graphql"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Файл для инвойса",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let response = pm.response.json();\r",
+                  "\r",
+                  "pm.environment.set(\"FILE_ID\", response.id);\r",
+                  "pm.environment.set(\"FILE_NAME\", response.fileName);\r",
+                  "pm.environment.set(\"FILE_CONTENT_TYPE\", response.contentType);\r",
+                  "pm.environment.set(\"FILE_STORAGE_PATH\", response.fileStoragePath);\r",
+                  "\r",
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "accept-language",
+                "value": "ru,en;q=0.9"
+              },
+              {
+                "key": "locale",
+                "value": "ru"
+              },
+              {
+                "key": "origin",
+                "value": "https://test.cupra.io"
+              },
+              {
+                "key": "priority",
+                "value": "u=1, i"
+              },
+              {
+                "key": "referer",
+                "value": "https://test.cupra.io/ru/invoice/create"
+              },
+              {
+                "key": "sec-ch-ua",
+                "value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\""
+              },
+              {
+                "key": "sec-ch-ua-mobile",
+                "value": "?0"
+              },
+              {
+                "key": "sec-ch-ua-platform",
+                "value": "\"Windows\""
+              },
+              {
+                "key": "sec-fetch-dest",
+                "value": "empty"
+              },
+              {
+                "key": "sec-fetch-mode",
+                "value": "cors"
+              },
+              {
+                "key": "sec-fetch-site",
+                "value": "same-origin"
+              },
+              {
+                "key": "user-agent",
+                "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36"
+              },
+              {
+                "key": "Cookie",
+                "value": "JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgzNTQ3NTIsImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.RiER_yjfB__AUNuptjSKY53Rk_GtGFwv7yGJ199c3bg"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "postman-cloud:///1f093a2b-c758-49d0-ba36-4510649d9381"
+                },
+                {
+                  "key": "documentType",
+                  "value": "INVOICE",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "https://{{URL}}/api/invoicer/v2/documents",
+              "protocol": "https",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "api",
+                "invoicer",
+                "v2",
+                "documents"
+              ]
+            },
+            "description": "Generated from cURL: curl 'https://test.cupra.io/api/invoicer/v2/documents' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'accept-language: ru,en;q=0.9' \\\r\n  -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundarykzAUaxZ5Jm8M8D3U' \\\r\n  -b 'JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijc0NjIwMDI3LTA3ZDEtNGI0Zi05NWRjLWIzYzRhNzRhZGRiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHNwYWdoZXR0aWNvZGUucnUiLCJGdWxsTmFtZSI6ItCQ0LTQvNC40L0g0JrRg9C_0YDQvtCy0LjRhyIsIkNsaWVudCI6IiIsIldhcmVob3VzZSI6IiIsIkNvbXBhbnkiOiIyYTJhNDk5Ni1mMTdjLTQ3YWQtODhhMi05Y2RlNmFlZDBmNDIiLCJBcHBseUNvbXBhbnlGaWx0ZXIiOiJGYWxzZSIsIkFwcGx5Q2xpZW50RmlsdGVyIjoiRmFsc2UiLCJBcHBseVdhcmVob3VzZUZpbHRlciI6IkZhbHNlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbImF1ZGl0b3IuYWxsQWN0aW9ucy5yZWFkIiwiY2l0ZXMuZGVsZXRlIiwiY2l0ZXMuZWRpdCIsImNpdGVzLnJlYWQiLCJjbGllbnQuZGVsZXRlIiwiY2xpZW50LmVkaXQiLCJjbGllbnQucmVhZCIsImNvbnRyb2xNYXJrLmRlbGV0ZSIsImNvbnRyb2xNYXJrLmVkaXQiLCJjb250cm9sTWFyay5yZWFkIiwiY3VzdG9tbGlnaHQuZGVsZXRlIiwiY3VzdG9tbGlnaHQuZWRpdCIsImN1c3RvbWxpZ2h0LnJlYWQiLCJkYXRhbWF0cml4LmRlbGV0ZSIsImRhdGFtYXRyaXguZWRpdCIsImRhdGFtYXRyaXgucmVhZCIsImRlY2xhcmF0aW9ucy5lZGl0IiwiZGVjbGFyYXRpb25zLnJlYWQiLCJleHQxLmRlbGV0ZSIsImV4dDEuZWRpdCIsImV4dDEucmVhZCIsImdvb2RzLmVkaXQiLCJnb29kcy5yZWFkIiwiaWRlbnRpdHkucGVybWlzc2lvbnMucmVhZCIsImlkZW50aXR5LnJvbGVzLmRlbGV0ZSIsImlkZW50aXR5LnJvbGVzLmVkaXQiLCJpZGVudGl0eS5yb2xlcy5yZWFkIiwiaWRlbnRpdHkudXNlcnMuZWRpdCIsImlkZW50aXR5LnVzZXJzLnJlYWQiLCJpbnZvaWNlRGRlLmRlbGV0ZSIsImludm9pY2VEZGUuZWRpdCIsImludm9pY2VEZGUucmVhZCIsImludm9pY2UuZGVsZXRlIiwiaW52b2ljZS5lZGl0IiwiaW52b2ljZS5wYWNraW5nQ291bnQuZWRpdCIsImludm9pY2UucmVhZCIsImxlZ2FsLmRlbGV0ZSIsImxlZ2FsLmVkaXQiLCJsZWdhbC5yZWFkIiwibGVnYWwudmFsaWRhdGUiLCJvcmRlci5jYWxjdWxhdGlvbnMuZWRpdCIsIm9yZGVyLmNhbGN1bGF0aW9ucy5yZWFkIiwib3JkZXIuY2xpZW50LmVkaXQiLCJvcmRlci5jcmVhdGUiLCJvcmRlci5jdXN0b21iaWxsLmVkaXQiLCJvcmRlci5kZWxldGUiLCJvcmRlci5lZGl0Iiwib3JkZXIuZm9ybWxhYmVsU3RhdHVzLmVkaXQiLCJvcmRlci5wYWNraW5nU3RhdHVzLmVkaXQiLCJvcmRlci5yZWFkIiwib3JkZXIuc3RhdHVzLmVkaXQiLCJvcmRlci50YWdzLmVkaXQiLCJvcmRlci50YXJpZmYuZWRpdCIsIm9yZGVyLnRhcmlmZi5yZWFkIiwib3JkZXIudHJhbnNpdC5lZGl0Iiwib3JkZXIudHJhbnNpdC5yZWFkIiwib3JkZXIudmF0LmVkaXQiLCJvcmRlci53YXliaWxsLmVkaXQiLCJvdGhlckRvY3VtZW50LmRlbGV0ZSIsIm90aGVyRG9jdW1lbnQuZWRpdCIsIm90aGVyRG9jdW1lbnQucmVhZCIsInBhY2tpbmcuZWRpdCIsInBhY2tpbmdMaXN0LmRlbGV0ZSIsInBhY2tpbmdMaXN0LmVkaXQiLCJwYWNraW5nTGlzdC5yZWFkIiwicGFja2luZy5yZWFkIiwidGFnLmRlbGV0ZSIsInRhZy5lZGl0IiwidGFnLnJlYWQiLCJ0ZW1wbGF0ZS5kZWxldGUiLCJ0ZW1wbGF0ZS5lZGl0IiwidGVtcGxhdGUucmVhZCIsInRyYW5zaXRCaWxsLmRlbGV0ZSIsInRyYW5zaXRCaWxsLmVkaXQiLCJ0cmFuc2l0QmlsbC5yZWFkIiwid2FyZWhvdXNlLmRlbGV0ZSIsIndhcmVob3VzZS5lZGl0Iiwid2FyZWhvdXNlLnJlYWQiLCJ3YXliaWxsLmRlbGV0ZSIsIndheWJpbGwuZWRpdCIsIndheWJpbGwucmVhZCJdLCJleHAiOjE3NTgzNTQ3NTIsImlzcyI6InRyYWNrZXIuY3VwcmEuaW8ifQ.RiER_yjfB__AUNuptjSKY53Rk_GtGFwv7yGJ199c3bg' \\\r\n  -H 'locale: ru' \\\r\n  -H 'origin: https://test.cupra.io' \\\r\n  -H 'priority: u=1, i' \\\r\n  -H 'referer: https://test.cupra.io/ru/invoice/create' \\\r\n  -H 'sec-ch-ua: \"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"YaBrowser\";v=\"25.8\", \"Yowser\";v=\"2.5\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'sec-fetch-dest: empty' \\\r\n  -H 'sec-fetch-mode: cors' \\\r\n  -H 'sec-fetch-site: same-origin' \\\r\n  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36' \\\r\n  --data-raw $'------WebKitFormBoundarykzAUaxZ5Jm8M8D3U\\r\\nContent-Disposition: form-data; name=\"file\"; filename=\"EX1_25ITQV01TGO16894A0_DG.pdf\"\\r\\nContent-Type: application/pdf\\r\\n\\r\\n\\r\\n------WebKitFormBoundarykzAUaxZ5Jm8M8D3U\\r\\nContent-Disposition: form-data; name=\"documentType\"\\r\\n\\r\\nINVOICE\\r\\n------WebKitFormBoundarykzAUaxZ5Jm8M8D3U--\\r\\n'"
+          },
+          "response": []
+        },
+        {
+          "name": "Создать инвойс № 1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let response = pm.response.json();\r",
+                  "\r",
+                  "pm.environment.set(\"INVOICE_ID_1\", response.id);\r",
+                  "\r",
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "let randomDigits = Array.from({length: 10}, () => Math.floor(Math.random() * 10)).join(\"\");\r",
+                  "let today = new Date(); // Fri Oct 17 2025 14:35:08 GMT+0000 (Coordinated Universal Time)\r",
+                  "let iso = today.toISOString(); // 2025-10-17T14:35:08.123Z\r",
+                  "let isoDate = today.toISOString().split('T')[0] // 2025-10-17\r",
+                  "\r",
+                  "let name = iso + \"-AM\";\r",
+                  "let date = isoDate + \"T00:00:00.000Z\";\r",
+                  "\r",
+                  "pm.environment.set(\"NAME_INVOICE\", name);\r",
+                  "pm.environment.set(\"CURRENT_DATE\", date);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"number\": \"{{NAME_INVOICE}}\",\r\n    \"date\": \"{{CURRENT_DATE}}\",\r\n    \"type\": {\r\n        \"id\": \"INVOICE\",\r\n        \"nameRu\": \"Инвойс\"\r\n    },\r\n    \"endCustomer\": {\r\n        \"name\": \"\",\r\n        \"country\": null\r\n    },\r\n    \"sender\": {\r\n        \"name\": \"\",\r\n        \"country\": {\r\n            \"alpha2\": \"{{COMPANY_COUNTRY_ALPHA2}}\",\r\n            \"id\": \"{{COMPANY_COUNTRY_ID}}\",\r\n            \"name\": \"{{COMPANY_COUNTRY_NAME}}\",\r\n            \"__typename\": \"{{COMPANY_COUNTRY_TYPENAME}}\",\r\n            \"nameRu\": \"{{COMPANY_COUNTRY_NAME}}\",\r\n            \"nameEn\": \"{{COMPANY_COUNTRY_NAME}}\"\r\n        },\r\n        \"company\": {\r\n            \"eori\": {{COMPANY_EORI}},\r\n            \"id\": \"{{COMPANY_ID}}\",\r\n            \"name\": \"{{COMPANY_NAME}}\",\r\n            \"vat\": \"{{COMPANY_VAT}}\"\r\n        }\r\n    },\r\n    \"recipient\": {\r\n        \"name\": \"\",\r\n        \"country\": null\r\n    },\r\n    \"incoterms\": null,\r\n    \"currency\": {\r\n        \"isoCode\": \"EUR\"\r\n    },\r\n    \"sum\": 100,\r\n    \"itemCount\": 2,\r\n    \"packingCount\": 3,\r\n    \"grossWeight\": 4,\r\n    \"netWeight\": 8,\r\n    \"documents\": [\r\n        {\r\n            \"id\": \"{{FILE_ID}}\",\r\n            \"fileName\": \"{{FILE_NAME}}\",\r\n            \"documentType\": \"{{FILE_CONTENT_TYPE}}\",\r\n            \"fileStoragePath\": \"{{FILE_STORAGE_PATH}}\"\r\n        }\r\n    ],\r\n    \"orders\": [],\r\n    \"wayBills\": [],\r\n    \"citeses\": [],\r\n    \"exportDeclarations\": [],\r\n    \"inEdit\": true,\r\n    \"volume\": 6,\r\n    \"client\": {\r\n        \"nic\": \"{{CLIENT_NIC}}\",\r\n        \"id\": \"{{CLIENT_ID}}\",\r\n        \"__typename\": \"{{CLIENT_TYPENAME}}\"\r\n  }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://{{URL}}/api/invoicer/invoices/",
+              "protocol": "https",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "api",
+                "invoicer",
+                "invoices",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Создать инвойс № 2",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let response = pm.response.json();\r",
+                  "\r",
+                  "pm.environment.set(\"INVOICE_ID_2\", response.id);\r",
+                  "\r",
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "let randomDigits = Array.from({length: 10}, () => Math.floor(Math.random() * 10)).join(\"\");\r",
+                  "let today = new Date(); // Fri Oct 17 2025 14:35:08 GMT+0000 (Coordinated Universal Time)\r",
+                  "let iso = today.toISOString(); // 2025-10-17T14:35:08.123Z\r",
+                  "let isoDate = today.toISOString().split('T')[0] // 2025-10-17\r",
+                  "\r",
+                  "let name = iso + \"-AM\";\r",
+                  "let date = isoDate + \"T00:00:00.000Z\";\r",
+                  "\r",
+                  "pm.environment.set(\"NAME_INVOICE\", name);\r",
+                  "pm.environment.set(\"CURRENT_DATE\", date);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"number\": \"{{NAME_INVOICE}}\",\r\n    \"date\": \"{{CURRENT_DATE}}\",\r\n    \"type\": {\r\n        \"id\": \"INVOICE\",\r\n        \"nameRu\": \"Инвойс\"\r\n    },\r\n    \"endCustomer\": {\r\n        \"name\": \"\",\r\n        \"country\": null\r\n    },\r\n    \"sender\": {\r\n        \"name\": \"\",\r\n        \"country\": {\r\n            \"alpha2\": \"{{COMPANY_COUNTRY_ALPHA2}}\",\r\n            \"id\": \"{{COMPANY_COUNTRY_ID}}\",\r\n            \"name\": \"{{COMPANY_COUNTRY_NAME}}\",\r\n            \"__typename\": \"{{COMPANY_COUNTRY_TYPENAME}}\",\r\n            \"nameRu\": \"{{COMPANY_COUNTRY_NAME}}\",\r\n            \"nameEn\": \"{{COMPANY_COUNTRY_NAME}}\"\r\n        },\r\n        \"company\": {\r\n            \"eori\": {{COMPANY_EORI}},\r\n            \"id\": \"{{COMPANY_ID}}\",\r\n            \"name\": \"{{COMPANY_NAME}}\",\r\n            \"vat\": \"{{COMPANY_VAT}}\"\r\n        }\r\n    },\r\n    \"recipient\": {\r\n        \"name\": \"\",\r\n        \"country\": null\r\n    },\r\n    \"incoterms\": null,\r\n    \"currency\": {\r\n        \"isoCode\": \"EUR\"\r\n    },\r\n    \"sum\": 100,\r\n    \"itemCount\": null,\r\n    \"packingCount\": 2,\r\n    \"grossWeight\": null,\r\n    \"netWeight\": null,\r\n    \"documents\": [],\r\n    \"orders\": [],\r\n    \"wayBills\": [],\r\n    \"citeses\": [],\r\n    \"exportDeclarations\": [],\r\n    \"inEdit\": true,\r\n    \"volume\": null\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://{{URL}}/api/invoicer/invoices/",
+              "protocol": "https",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "api",
+                "invoicer",
+                "invoices",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Назначить пакингиста на несколько инвойсов",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"invoicesIds\": [\r\n        \"{{INVOICE_ID_1}}\",\r\n        \"{{INVOICE_ID_2}}\"\r\n    ],\r\n    \"userId\": \"{{USER_ID_IS_ROLE}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://{{URL}}/api/invoicer/invoices/batch/packing/assign-to-user",
+              "protocol": "https",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "api",
+                "invoicer",
+                "invoices",
+                "batch",
+                "packing",
+                "assign-to-user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Сбросить назначение ответственного пакингиста с нескольких инвойсов",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"invoicesIds\": [\r\n        \"{{INVOICE_ID_1}}\",\r\n        \"{{INVOICE_ID_2}}\"\r\n    ],\r\n    \"userId\": null\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://{{URL}}/api/invoicer/invoices/batch/packing/assign-to-user",
+              "protocol": "https",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "api",
+                "invoicer",
+                "invoices",
+                "batch",
+                "packing",
+                "assign-to-user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Ошибка при назначении не существующего пользователя",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 400\", function () {\r",
+                  "    pm.response.to.have.status(400);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"invoicesIds\": [\r\n        \"{{INVOICE_ID_1}}\"\r\n    ],\r\n    \"userId\": \"{{NOT_USER}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://{{URL}}/api/invoicer/invoices/batch/packing/assign-to-user",
+              "protocol": "https",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "api",
+                "invoicer",
+                "invoices",
+                "batch",
+                "packing",
+                "assign-to-user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Авторизация пользователя без прав",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let response = pm.response.json();\r",
+                  "\r",
+                  "pm.globals.set(\"TOKEN\", response.accessToken);\r",
+                  "pm.globals.set(\"TOKENTYPE\", response.tokenType);\r",
+                  "\r",
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"userName\": \"{{USER_NAME_NOT_ROLE}}\",\r\n    \"password\": \"{{PASSWORD}}\",\r\n    \"type\": \"otp\",\r\n    \"useCookies\": true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://{{URL}}/api/identity/users/login",
+              "protocol": "https",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "api",
+                "identity",
+                "users",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Ошибка при назначении пакингиста пользователем без прав",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 403\", function () {\r",
+                  "    pm.response.to.have.status(403);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"invoicesIds\": [\r\n        \"{{INVOICE_ID_1}}\"\r\n    ],\r\n    \"userId\": \"{{USER_ID_IS_ROLE}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://{{URL}}/api/invoicer/invoices/batch/packing/assign-to-user",
+              "protocol": "https",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "api",
+                "invoicer",
+                "invoices",
+                "batch",
+                "packing",
+                "assign-to-user"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "description": "1. Переменные USER_NAME_IS_ROLE и USER_NAME_NOT_ROLE изменить вручную\n    \n2. Изменить тесты в Поиск пользователя\n    \n\nAdmin - с правами пакингистов  \nTestAM - без прав пакингистов"
+    },
+    {
+      "name": "Назначение пакингиста на инвойс",
+      "item": [
+        {
+          "name": "Авторизация пользователя с правами",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let response = pm.response.json();\r",
+                  "\r",
+                  "pm.globals.set(\"TOKEN\", response.accessToken);\r",
+                  "pm.globals.set(\"TOKENTYPE\", response.tokenType);\r",
+                  "\r",
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"userName\": \"admin\",\r\n    \"password\": \"111111\",\r\n    \"type\": \"otp\",\r\n    \"useCookies\": true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://{{URL}}/api/identity/users/login",
+              "protocol": "https",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "api",
+                "identity",
+                "users",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Назначить пакингиста на инвойс",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"invoicesIds\": [\r\n        \"01000000-0010-ac14-8bb3-08de0be469bc\"\r\n    ],\r\n    \"userId\": \"ed552995-94d1-41de-902c-60562df9f416\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://{{URL}}/api/invoicer/invoices/batch/packing/assign-to-user",
+              "protocol": "https",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "api",
+                "invoicer",
+                "invoices",
+                "batch",
+                "packing",
+                "assign-to-user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Сбросить назначение ответственного пакингиста",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"invoicesIds\": [\r\n        \"01000000-0010-ac14-8bb3-08de0be469bc\"\r\n    ],\r\n    \"userId\": null\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://{{URL}}/api/invoicer/invoices/batch/packing/assign-to-user",
+              "protocol": "https",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "api",
+                "invoicer",
+                "invoices",
+                "batch",
+                "packing",
+                "assign-to-user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Назначить пакингиста на несколько инвойсов",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"invoicesIds\": [\r\n        \"01000000-0010-ac14-8bb3-08de0be469bc\",\r\n        \"01000000-0010-ac14-fbb2-08de04e38c89\"\r\n    ],\r\n    \"userId\": \"ed552995-94d1-41de-902c-60562df9f416\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://{{URL}}/api/invoicer/invoices/batch/packing/assign-to-user",
+              "protocol": "https",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "api",
+                "invoicer",
+                "invoices",
+                "batch",
+                "packing",
+                "assign-to-user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Сбросить назначение ответственного пакингиста с нескольких инвойсов",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"invoicesIds\": [\r\n        \"01000000-0010-ac14-8bb3-08de0be469bc\",\r\n        \"01000000-0010-ac14-fbb2-08de04e38c89\"\r\n    ],\r\n    \"userId\": null\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://{{URL}}/api/invoicer/invoices/batch/packing/assign-to-user",
+              "protocol": "https",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "api",
+                "invoicer",
+                "invoices",
+                "batch",
+                "packing",
+                "assign-to-user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Ошибка при назначении не существующего пользователя",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 400\", function () {\r",
+                  "    pm.response.to.have.status(400);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"invoicesIds\": [\r\n        \"01000000-0010-ac14-8bb3-08de0be469bc\"\r\n    ],\r\n    \"userId\": \"d01b1eab-4607-4f06-9ab2-a8097e8066951\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://{{URL}}/api/invoicer/invoices/batch/packing/assign-to-user",
+              "protocol": "https",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "api",
+                "invoicer",
+                "invoices",
+                "batch",
+                "packing",
+                "assign-to-user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Авторизация пользователя без прав",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let response = pm.response.json();\r",
+                  "\r",
+                  "pm.globals.set(\"TOKEN\", response.accessToken);\r",
+                  "pm.globals.set(\"TOKENTYPE\", response.tokenType);\r",
+                  "\r",
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"userName\": \"TestAM\",\r\n    \"password\": \"111111\",\r\n    \"type\": \"otp\",\r\n    \"useCookies\": true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://{{URL}}/api/identity/users/login",
+              "protocol": "https",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "api",
+                "identity",
+                "users",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Ошибка при назначении пакингиста пользователем без прав",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 403\", function () {\r",
+                  "    pm.response.to.have.status(403);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"invoicesIds\": [\r\n        \"01000000-0010-ac14-8bb3-08de0be469bc\"\r\n    ],\r\n    \"userId\": \"ed552995-94d1-41de-902c-60562df9f416\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://{{URL}}/api/invoicer/invoices/batch/packing/assign-to-user",
+              "protocol": "https",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "api",
+                "invoicer",
+                "invoices",
+                "batch",
+                "packing",
+                "assign-to-user"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Cмены статуса пакинга у инвойса",
+      "item": [
+        {
+          "name": "Смена статуса \"Пустой\"",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"invoiceId\": \"{{INVOICE_ID_1}}\",\r\n  \"status\": \"EMPTY\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://{{URL}}/api/packing/invoices/{{INVOICE_ID_1}}/packing-status",
+              "protocol": "https",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "api",
+                "packing",
+                "invoices",
+                "{{INVOICE_ID_1}}",
+                "packing-status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Смена статуса \"В работе\"",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"invoiceId\": \"{{INVOICE_ID_1}}\",\r\n  \"status\": \"IN_PROGRESS\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://{{URL}}/api/packing/invoices/{{INVOICE_ID_1}}/packing-status",
+              "protocol": "https",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "api",
+                "packing",
+                "invoices",
+                "{{INVOICE_ID_1}}",
+                "packing-status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Смена статуса \"Завершен\"",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"invoiceId\": \"{{INVOICE_ID_1}}\",\r\n  \"status\": \"FILLED_OUT\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://{{URL}}/api/packing/invoices/{{INVOICE_ID_1}}/packing-status",
+              "protocol": "https",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "api",
+                "packing",
+                "invoices",
+                "{{INVOICE_ID_1}}",
+                "packing-status"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Выдача списка инвойсов на заполнение пакинга",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query getInvoicesForPackingPaged($skip: Int, $take: Int, $where: InvoiceFilterInput, $order: [InvoiceSortInput!]) {\r\n  invoicesForPackingPaged(skip: $skip, take: $take, where: $where, order: $order) {\r\n    items {\r\n      id\r\n      number\r\n      date\r\n      packingInfo {\r\n        skuItemsCount\r\n        __typename\r\n      }\r\n      packingCount\r\n      packingInfo {\r\n        assignedTo {\r\n          fullName\r\n          __typename\r\n        }\r\n        __typename\r\n      }\r\n      packingInfo {\r\n        status {\r\n          id\r\n          nameRu\r\n          __typename\r\n        }\r\n        __typename\r\n      }\r\n      sum\r\n      sender {\r\n        company {\r\n          name\r\n          id\r\n          __typename\r\n        }\r\n        __typename\r\n      }\r\n      currency {\r\n        isoCode\r\n        __typename\r\n      }\r\n      client {\r\n        nic\r\n        id\r\n        __typename\r\n      }\r\n      documents {\r\n        fileName\r\n        id\r\n        fileStoragePath\r\n        __typename\r\n      }\r\n      grossWeight\r\n      netWeight\r\n      itemCount\r\n      orders {\r\n        number\r\n        id\r\n        status\r\n        __typename\r\n      }\r\n      wayBills {\r\n        name\r\n        uid\r\n        id\r\n        __typename\r\n      }\r\n      createdDate\r\n      __typename\r\n    }\r\n    totalCount\r\n    __typename\r\n  }\r\n}",
+            "variables": "{\r\n  \"skip\": 0,\r\n  \"take\": 100,\r\n  \"where\": {},\r\n  \"order\": [\r\n    {\r\n      \"createdDateUtc\": \"DESC\"\r\n    }\r\n  ]\r\n}"
+          }
+        },
+        "url": {
+          "raw": "https://test.cupra.io/api/invoicer/graphql",
+          "protocol": "https",
+          "host": [
+            "test",
+            "cupra",
+            "io"
+          ],
+          "path": [
+            "api",
+            "invoicer",
+            "graphql"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

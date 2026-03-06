@@ -1,0 +1,145 @@
+{
+  "info": {
+    "_postman_id": "5353dfca-5f4b-44b7-a974-e0a3f3b15df3",
+    "name": "Прессет маршрутов",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "32293957",
+    "_collection_link": "https://go.postman.co/collection/32293957-5353dfca-5f4b-44b7-a974-e0a3f3b15df3?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Создать прессет маршрута по умолчанию",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"id\": \"00000000-0000-0000-0000-000000000000\",\r\n    \"name\": \"111225AM-1\",\r\n    \"clientId\": \"2f890000-d6ba-6a5c-2895-08de38a34a42\",\r\n    \"isDefault\": true,\r\n    \"createdAt\": \"2025-12-11T10:53:03.915Z\",\r\n    \"presetWarehouses\": [\r\n        {\r\n            \"defaultStorageTime\": 24,\r\n            \"id\": \"eae5517c-4c32-41ac-8ba9-a9e75beeb653\",\r\n            \"isRequired\": true,\r\n            \"position\": 0,\r\n            \"type\": {\r\n                \"id\": \"SELLER\",\r\n                \"nameEn\": \"Seller\",\r\n                \"nameRu\": \"Склад продавца\",\r\n                \"__typename\": \"WarehouseTypeDto\"\r\n            },\r\n            \"warehouse\": {\r\n                \"id\": \"e56f0c4d-9e67-4381-8d18-58bc7a9f7ceb\",\r\n                \"name\": \"Склад продавца\",\r\n                \"type\": {\r\n                    \"id\": \"SELLER\",\r\n                    \"nameEn\": \"Seller\",\r\n                    \"nameRu\": \"Склад продавца\",\r\n                    \"__typename\": \"WarehouseTypeDto\"\r\n                },\r\n                \"__typename\": \"WarehouseInfoShortDto\"\r\n            },\r\n            \"__typename\": \"waybills_routePresetWarehouse\"\r\n        },\r\n        {\r\n            \"defaultStorageTime\": 24,\r\n            \"id\": \"ac7ad7f8-fb53-4edf-8326-83e72eda8bbe\",\r\n            \"isRequired\": false,\r\n            \"position\": 1,\r\n            \"type\": {\r\n                \"id\": \"CONSOLIDATION\",\r\n                \"nameEn\": \"Consolidation\",\r\n                \"nameRu\": \"Консолидационный склад\",\r\n                \"__typename\": \"WarehouseTypeDto\"\r\n            },\r\n            \"warehouse\": {\r\n                \"id\": \"211a6ac0-0988-436d-8e4f-a0cea10e08b3\",\r\n                \"name\": \"Rimini\",\r\n                \"type\": {\r\n                    \"id\": \"CONSOLIDATION\",\r\n                    \"nameEn\": \"Consolidation\",\r\n                    \"nameRu\": \"Консолидационный склад\",\r\n                    \"__typename\": \"WarehouseTypeDto\"\r\n                },\r\n                \"__typename\": \"WarehouseInfoShortDto\"\r\n            },\r\n            \"__typename\": \"waybills_routePresetWarehouse\"\r\n        },\r\n        {\r\n            \"defaultStorageTime\": 24,\r\n            \"id\": \"b3b142b5-9283-4e66-ac19-b931b1e28882\",\r\n            \"isRequired\": false,\r\n            \"position\": 2,\r\n            \"type\": {\r\n                \"id\": \"CONSOLIDATION\",\r\n                \"nameEn\": \"Consolidation\",\r\n                \"nameRu\": \"Консолидационный склад\",\r\n                \"__typename\": \"WarehouseTypeDto\"\r\n            },\r\n            \"warehouse\": {\r\n                \"id\": \"840060ca-c4d9-4d23-b3fb-b84005b44d8a\",\r\n                \"name\": \"Poland\",\r\n                \"type\": {\r\n                    \"id\": \"CONSOLIDATION\",\r\n                    \"nameEn\": \"Consolidation\",\r\n                    \"nameRu\": \"Консолидационный склад\",\r\n                    \"__typename\": \"WarehouseTypeDto\"\r\n                },\r\n                \"__typename\": \"WarehouseInfoShortDto\"\r\n            },\r\n            \"__typename\": \"waybills_routePresetWarehouse\"\r\n        },\r\n        {\r\n            \"defaultStorageTime\": 24,\r\n            \"id\": \"46049bfc-0ac4-4dcf-8ee1-f0ad94a73fe0\",\r\n            \"isRequired\": true,\r\n            \"position\": 3,\r\n            \"type\": {\r\n                \"id\": \"CUSTOMS\",\r\n                \"nameEn\": \"Customs\",\r\n                \"nameRu\": \"Таможня\",\r\n                \"__typename\": \"WarehouseTypeDto\"\r\n            },\r\n            \"warehouse\": {\r\n                \"id\": \"f5145af3-4a9f-4c64-90ab-14bd5c098dff\",\r\n                \"name\": \"CUSTOMS\",\r\n                \"type\": {\r\n                    \"id\": \"CUSTOMS\",\r\n                    \"nameEn\": \"Customs\",\r\n                    \"nameRu\": \"Таможня\",\r\n                    \"__typename\": \"WarehouseTypeDto\"\r\n                },\r\n                \"__typename\": \"WarehouseInfoShortDto\"\r\n            },\r\n            \"__typename\": \"waybills_routePresetWarehouse\"\r\n        },\r\n        {\r\n            \"defaultStorageTime\": 24,\r\n            \"id\": \"27e56a03-c0f2-4dff-9db9-b8948a0e3188\",\r\n            \"isRequired\": false,\r\n            \"position\": 4,\r\n            \"type\": {\r\n                \"id\": \"CONSOLIDATION\",\r\n                \"nameEn\": \"Consolidation\",\r\n                \"nameRu\": \"Консолидационный склад\",\r\n                \"__typename\": \"WarehouseTypeDto\"\r\n            },\r\n            \"warehouse\": {\r\n                \"id\": \"35067c1b-63c6-46b9-814b-04271b6a63c0\",\r\n                \"name\": \"Moscow\",\r\n                \"type\": {\r\n                    \"id\": \"CONSOLIDATION\",\r\n                    \"nameEn\": \"Consolidation\",\r\n                    \"nameRu\": \"Консолидационный склад\",\r\n                    \"__typename\": \"WarehouseTypeDto\"\r\n                },\r\n                \"__typename\": \"WarehouseInfoShortDto\"\r\n            },\r\n            \"__typename\": \"waybills_routePresetWarehouse\"\r\n        },\r\n        {\r\n            \"defaultStorageTime\": 24,\r\n            \"id\": \"998b36ad-291f-43df-acaa-3be92efaaf34\",\r\n            \"isRequired\": true,\r\n            \"position\": 5,\r\n            \"type\": {\r\n                \"id\": \"CLIENT_WAREHOUSE\",\r\n                \"nameEn\": \"Client Warehouse\",\r\n                \"nameRu\": \"Склад покупателя\",\r\n                \"__typename\": \"WarehouseTypeDto\"\r\n            },\r\n            \"warehouse\": {\r\n                \"id\": \"a3fb2b51-d3cd-4155-8f8d-26d1320763ae\",\r\n                \"name\": \"111225AM-1 АЗС\",\r\n                \"type\": {\r\n                    \"id\": \"CLIENT_WAREHOUSE\",\r\n                    \"nameEn\": \"Client Warehouse\",\r\n                    \"nameRu\": \"Склад покупателя\",\r\n                    \"__typename\": \"WarehouseTypeDto\"\r\n                },\r\n                \"__typename\": \"WarehouseInfoShortDto\"\r\n            },\r\n            \"__typename\": \"waybills_routePresetWarehouse\"\r\n        }\r\n    ],\r\n    \"__typename\": \"waybills_routePreset\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://{{URL}}/api/waybill/route-presets",
+          "protocol": "https",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "api",
+            "waybill",
+            "route-presets"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Редактировать прессет маршрута",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"clientId\": \"2f890000-d6ba-6a5c-2895-08de38a34a42\",\r\n    \"createdAt\": \"0001-01-01T00:00:00.000Z\",\r\n    \"id\": \"2be5df74-dc81-43af-8209-402de365a4d9\",\r\n    \"isDefault\": false,\r\n    \"name\": \"111225AM-1\",\r\n    \"presetWarehouses\": [\r\n        {\r\n            \"id\": \"c22d95cb-1d92-49d3-a316-5929bcff2f01\",\r\n            \"isRequired\": true,\r\n            \"defaultStorageTime\": 24,\r\n            \"position\": 0,\r\n            \"type\": {\r\n                \"id\": \"SELLER\",\r\n                \"nameEn\": \"Seller\",\r\n                \"nameRu\": \"Склад продавца\",\r\n                \"__typename\": \"WarehouseTypeDto\"\r\n            },\r\n            \"warehouse\": {\r\n                \"id\": \"e56f0c4d-9e67-4381-8d18-58bc7a9f7ceb\",\r\n                \"name\": \"Склад продавца\",\r\n                \"type\": {\r\n                    \"id\": \"SELLER\",\r\n                    \"nameEn\": \"Seller\",\r\n                    \"nameRu\": \"Склад продавца\",\r\n                    \"__typename\": \"WarehouseTypeDto\"\r\n                },\r\n                \"__typename\": \"WarehouseInfoShortDto\"\r\n            },\r\n            \"__typename\": \"waybills_routePresetWarehouse\"\r\n        },\r\n        {\r\n            \"id\": \"db8a322f-ce96-4bb5-8878-c6c5be2dc5ca\",\r\n            \"isRequired\": true,\r\n            \"defaultStorageTime\": 24,\r\n            \"position\": 1,\r\n            \"type\": {\r\n                \"id\": \"CUSTOMS\",\r\n                \"nameEn\": \"Customs\",\r\n                \"nameRu\": \"Таможня\",\r\n                \"__typename\": \"WarehouseTypeDto\"\r\n            },\r\n            \"warehouse\": {\r\n                \"id\": \"f5145af3-4a9f-4c64-90ab-14bd5c098dff\",\r\n                \"name\": \"CUSTOMS\",\r\n                \"type\": {\r\n                    \"id\": \"CUSTOMS\",\r\n                    \"nameEn\": \"Customs\",\r\n                    \"nameRu\": \"Таможня\",\r\n                    \"__typename\": \"WarehouseTypeDto\"\r\n                },\r\n                \"__typename\": \"WarehouseInfoShortDto\"\r\n            },\r\n            \"__typename\": \"waybills_routePresetWarehouse\"\r\n        },\r\n        {\r\n            \"id\": \"d45ff9fb-8dc7-41f3-89c0-8d902f07b224\",\r\n            \"isRequired\": true,\r\n            \"defaultStorageTime\": 24,\r\n            \"position\": 2,\r\n            \"type\": {\r\n                \"id\": \"CLIENT_WAREHOUSE\",\r\n                \"nameEn\": \"Client Warehouse\",\r\n                \"nameRu\": \"Склад покупателя\",\r\n                \"__typename\": \"WarehouseTypeDto\"\r\n            },\r\n            \"warehouse\": {\r\n                \"id\": \"a3fb2b51-d3cd-4155-8f8d-26d1320763ae\",\r\n                \"name\": \"111225AM-1 АЗС\",\r\n                \"type\": {\r\n                    \"id\": \"CLIENT_WAREHOUSE\",\r\n                    \"nameEn\": \"Client Warehouse\",\r\n                    \"nameRu\": \"Склад покупателя\",\r\n                    \"__typename\": \"WarehouseTypeDto\"\r\n                },\r\n                \"__typename\": \"WarehouseInfoShortDto\"\r\n            },\r\n            \"__typename\": \"waybills_routePresetWarehouse\"\r\n        }\r\n    ],\r\n    \"__typename\": \"waybills_routePreset\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://{{URL}}/api/waybill/route-presets/{2be5df74-dc81-43af-8209-402de365a4d9}",
+          "protocol": "https",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "api",
+            "waybill",
+            "route-presets",
+            "{2be5df74-dc81-43af-8209-402de365a4d9}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Удалить прессет маршрута",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "https://{{URL}}/api/waybill/route-presets/{a5ce8ea5-99c9-4237-8413-f754f904731f}",
+          "protocol": "https",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "api",
+            "waybill",
+            "route-presets",
+            "{a5ce8ea5-99c9-4237-8413-f754f904731f}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Получение списка пресетов клиента по идентификатору клиента",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query getRoutePresetsById($id: UUID!) {\r\n  waybills_routePresets(clientId: $id) {\r\n    clientId\r\n    createdAt\r\n    id\r\n    isDefault\r\n    name\r\n    presetWarehouses {\r\n      id\r\n      isRequired\r\n      defaultStorageTime\r\n      position\r\n      type {\r\n        id\r\n        nameEn\r\n        nameRu\r\n        __typename\r\n      }\r\n      warehouse {\r\n        id\r\n        name\r\n        type {\r\n          id\r\n          nameEn\r\n          nameRu\r\n          __typename\r\n        }\r\n        __typename\r\n      }\r\n      __typename\r\n    }\r\n    __typename\r\n  }\r\n}",
+            "variables": "{\r\n  \"id\": \"0f2a0000-6e95-ea6b-c37f-08de3e2cfd01\"\r\n}"
+          }
+        },
+        "url": {
+          "raw": "https://{{URL}}/api/waybill/graphql",
+          "protocol": "https",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "api",
+            "waybill",
+            "graphql"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Получение пресета по умолчанию по идентификатору клиента (для создания нового)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query getDefaultRoutePresetById($id: UUID!) {\r\n  waybills_routePresetDefault(clientId: $id) {\r\n    id\r\n    name\r\n    clientId\r\n    isDefault\r\n    createdAt\r\n    presetWarehouses {\r\n      defaultStorageTime\r\n      id\r\n      isRequired\r\n      position\r\n      type {\r\n        id\r\n        nameEn\r\n        nameRu\r\n        __typename\r\n      }\r\n      warehouse {\r\n        id\r\n        name\r\n        type {\r\n          id\r\n          nameEn\r\n          nameRu\r\n          __typename\r\n        }\r\n        __typename\r\n      }\r\n      __typename\r\n    }\r\n    __typename\r\n  }\r\n}",
+            "variables": "{\r\n  \"id\": \"2f890000-d6ba-6a5c-2895-08de38a34a42\"\r\n}"
+          }
+        },
+        "url": {
+          "raw": "https://{{URL}}/api/waybill/graphql",
+          "protocol": "https",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "api",
+            "waybill",
+            "graphql"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

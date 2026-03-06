@@ -1,0 +1,58 @@
+{
+  "info": {
+    "_postman_id": "f7b5e9b1-5ee0-4c26-a0eb-fa23657b61a8",
+    "name": "Роли",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "32293957",
+    "_collection_link": "https://go.postman.co/collection/32293957-f7b5e9b1-5ee0-4c26-a0eb-fa23657b61a8?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Добавить роль Администратор, Admin",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"id\": \"ed552995-94d1-41de-902c-60562df9f416\",\r\n    \"permissions\": [],\r\n    \"userName\": \"a.myc\",\r\n    \"email\": \"a.myc@integra.vip\",\r\n    \"fullName\": \"Мыц Андрей\",\r\n    \"lastLogon\": \"2025-10-16T13:49:04.928Z\",\r\n    \"isEnabled\": true,\r\n    \"telegramId\": 1367096197,\r\n    \"telegramUserName\": \"andreimyc\",\r\n    \"roles\": [\r\n        {\r\n            \"id\": \"d65ce1c1-a391-46bf-8004-1123a8c13840\",\r\n            \"name\": \"Администратор\",\r\n            \"description\": null,\r\n            \"__typename\": \"ApplicationRoleModel\",\r\n            \"selectedCell\": true\r\n        },\r\n        {\r\n            \"id\": \"815ca690-e24a-436b-b5fa-73ae9e4e6164\",\r\n            \"name\": \"Admin\",\r\n            \"description\": null,\r\n            \"__typename\": \"ApplicationRoleModel\",\r\n            \"selectedCell\": true\r\n        }\r\n    ],\r\n    \"company\": null,\r\n    \"client\": null,\r\n    \"__typename\": \"UserModel\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://test.cupra.io/api/identity/users/a.myc",
+          "protocol": "https",
+          "host": [
+            "test",
+            "cupra",
+            "io"
+          ],
+          "path": [
+            "api",
+            "identity",
+            "users",
+            "a.myc"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

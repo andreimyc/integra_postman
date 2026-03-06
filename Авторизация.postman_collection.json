@@ -1,0 +1,61 @@
+{
+  "info": {
+    "_postman_id": "a9346f20-66e1-48d3-9794-60f8b1ab141d",
+    "name": "Авторизация",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "32293957",
+    "_collection_link": "https://go.postman.co/collection/32293957-a9346f20-66e1-48d3-9794-60f8b1ab141d?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Авторизация",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "let response = pm.response.json();\r",
+              "\r",
+              "pm.globals.set(\"TOKEN\", response.accessToken);\r",
+              "pm.globals.set(\"TOKENTYPE\", response.tokenType);\r",
+              "\r",
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"userName\": \"Admin\",\r\n    \"password\": \"111111\",\r\n    \"type\": \"otp\",\r\n    \"useCookies\": true\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://{{URL}}/api/identity/users/login",
+          "protocol": "https",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "api",
+            "identity",
+            "users",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
